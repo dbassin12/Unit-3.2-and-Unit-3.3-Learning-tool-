@@ -3,1320 +3,933 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AP Macro | Multipliers & SRAS Interactive Study Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>AP Macro | Multipliers & SRAS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0F2439;
-  --navy-deep: #0A1929;
-  --teal: #0D9488;
-  --teal-light: #14B8A6;
-  --teal-glow: #5EEAD4;
-  --gold: #F59E0B;
-  --gold-light: #FCD34D;
-  --white: #FFFFFF;
-  --off-white: #F0F4F8;
-  --cream: #FFFBEB;
-  --gray-100: #F1F5F9;
-  --gray-200: #E2E8F0;
-  --gray-300: #CBD5E1;
-  --gray-400: #94A3B8;
-  --gray-500: #64748B;
-  --gray-700: #334155;
-  --gray-900: #1E293B;
-  --red: #EF4444;
-  --green: #22C55E;
-  --font-display: 'Fraunces', serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F2439;--navy-deep:#0A1929;--teal:#0D9488;--teal-light:#14B8A6;
+  --gold:#F59E0B;--gold-light:#FCD34D;--white:#FFFFFF;--off-white:#F0F4F8;
+  --gray-100:#F1F5F9;--gray-200:#E2E8F0;--gray-400:#94A3B8;--gray-600:#475569;
+  --dark:#1E293B;--red:#EF4444;--green:#22C55E;--orange:#F97316;
+  --cream:#FFFBEB;--teal-bg:#CCFBF1;
+  --font-display:'DM Serif Display',serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--off-white);
-  color: var(--gray-900);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:70px}
+body{font-family:var(--font-body);color:var(--dark);background:var(--off-white);line-height:1.6;overflow-x:hidden}
 
-/* ─── HERO ─── */
-.hero {
-  background: var(--navy-deep);
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding: 3rem 1.5rem;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -5%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
-  border-radius: 50%;
-}
-.hero-content {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-}
-.hero-label {
-  font-family: var(--font-mono);
-  color: var(--teal-light);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.2s forwards;
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 0.75rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.4s forwards;
-}
-.hero h1 span { color: var(--teal-glow); }
-.hero-sub {
-  color: var(--gray-400);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.6s forwards;
-}
-.hero-bar {
-  width: 60px;
-  height: 4px;
-  background: var(--gold);
-  border-radius: 2px;
-  margin: 0 auto 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.5s forwards;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,36,57,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);padding:0 2rem;display:flex;align-items:center;height:60px;gap:1.5rem}
+.nav-logo{font-family:var(--font-display);color:var(--white);font-size:1.1rem;white-space:nowrap}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:0.25rem;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--gray-400);text-decoration:none;font-size:0.82rem;padding:0.4rem 0.75rem;border-radius:6px;white-space:nowrap;transition:all 0.2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.08)}
+.progress-bar{position:fixed;top:60px;left:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:101;transition:width 0.3s}
 
-/* ─── NAVIGATION TABS ─── */
-.nav-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-200);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-}
-.nav-tabs {
-  display: flex;
-  max-width: 900px;
-  margin: 0 auto;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-tabs::-webkit-scrollbar { display: none; }
-.nav-tab {
-  flex: 1;
-  min-width: 120px;
-  padding: 1rem 0.75rem;
-  text-align: center;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.25s;
-  white-space: nowrap;
-}
-.nav-tab:hover { color: var(--teal); }
-.nav-tab.active { color: var(--teal); }
-.nav-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 10%; right: 10%;
-  height: 3px;
-  background: var(--teal);
-  border-radius: 3px 3px 0 0;
-}
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy-deep);position:relative;overflow:hidden;padding:2rem}
+.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,0.15),transparent 70%);top:-200px;right:-100px}
+.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.1),transparent 70%);bottom:-100px;left:-50px}
+.hero-content{text-align:center;position:relative;z-index:1;max-width:700px}
+.hero-badge{display:inline-block;padding:0.4rem 1.2rem;border:1px solid rgba(20,184,166,0.4);border-radius:20px;color:var(--teal-light);font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);color:var(--white);line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--gray-400);font-size:1.1rem;margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto}
+.hero-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--teal);color:var(--white);border:none;border-radius:8px;font-size:1rem;font-family:var(--font-body);font-weight:600;cursor:pointer;transition:all 0.25s}
+.hero-btn:hover{background:var(--teal-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(13,148,136,0.3)}
 
-/* ─── SECTIONS ─── */
-.section { display: none; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-.section.active { display: block; animation: fadeIn 0.35s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.section h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--navy);
-  margin-bottom: 0.5rem;
-}
-.section .section-sub {
-  color: var(--gray-500);
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
+/* ── SECTIONS ── */
+.section{padding:5rem 2rem;max-width:900px;margin:0 auto}
+.section-label{display:inline-block;padding:0.3rem 0.8rem;background:var(--teal-bg);color:var(--teal);font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;margin-bottom:0.75rem}
+.section h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.4rem);color:var(--navy);margin-bottom:0.75rem}
+.section>p{color:var(--gray-600);font-size:1.05rem;margin-bottom:2rem;max-width:650px}
 
-/* ─── CARDS ─── */
-.card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 1.75rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  border: 1px solid var(--gray-200);
-  transition: box-shadow 0.2s;
-}
-.card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.card h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--navy);
-  margin-bottom: 0.75rem;
-}
-.card-accent {
-  border-left: 4px solid var(--teal);
-}
-.card-gold { border-left: 4px solid var(--gold); }
-.card-dark {
-  background: var(--navy);
-  color: var(--white);
-  border: none;
-}
-.card-dark h3 { color: var(--teal-glow); }
+/* ── CARDS ── */
+.card{background:var(--white);border-radius:12px;padding:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);margin-bottom:1.5rem;border:1px solid var(--gray-200)}
+.card-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.card-icon.teal{background:var(--teal-bg);color:var(--teal)}
+.card-icon.gold{background:var(--cream);color:var(--gold)}
+.card-icon.red{background:#FEE2E2;color:var(--red)}
+.card-icon.navy{background:#DBEAFE;color:var(--navy)}
+.card h3{font-family:var(--font-display);font-size:1.25rem;color:var(--navy)}
+.formula-box{background:var(--navy-deep);color:var(--white);padding:1.25rem 1.5rem;border-radius:10px;font-family:var(--font-mono);font-size:1.15rem;text-align:center;margin:1rem 0;letter-spacing:0.5px}
+.formula-box span{color:var(--gold-light)}
+.highlight{background:var(--cream);border-left:4px solid var(--gold);padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1rem 0;font-size:0.95rem}
+.highlight strong{color:var(--navy)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
 
-.formula-box {
-  background: var(--gray-100);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin: 1rem 0;
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  color: var(--navy);
-  font-weight: 600;
-  text-align: center;
-}
-.formula-box.big {
-  font-size: 1.5rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, var(--navy) 0%, #1E3A5F 100%);
-  color: var(--teal-glow);
-}
+/* ── INTERACTIVE CALCULATOR ── */
+.calc-wrap{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 2px 6px rgba(0,0,0,0.06),0 8px 24px rgba(0,0,0,0.06);border:1px solid var(--gray-200)}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+@media(max-width:640px){.calc-grid{grid-template-columns:1fr}}
+.calc-group label{display:block;font-weight:600;font-size:0.85rem;color:var(--gray-600);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
+.calc-group input,.calc-group select{width:100%;padding:0.7rem 1rem;border:2px solid var(--gray-200);border-radius:8px;font-size:1rem;font-family:var(--font-body);transition:border-color 0.2s;background:var(--white)}
+.calc-group input:focus,.calc-group select:focus{outline:none;border-color:var(--teal)}
+.calc-btn{width:100%;padding:0.85rem;background:var(--teal);color:var(--white);border:none;border-radius:8px;font-size:1rem;font-weight:600;font-family:var(--font-body);cursor:pointer;transition:all 0.2s}
+.calc-btn:hover{background:var(--teal-light)}
+.calc-result{margin-top:1.25rem;padding:1.25rem;background:var(--gray-100);border-radius:10px;display:none}
+.calc-result.show{display:block;animation:fadeUp 0.3s ease}
+.calc-result h4{font-family:var(--font-display);color:var(--navy);margin-bottom:0.75rem}
+.result-step{padding:0.5rem 0;border-bottom:1px solid var(--gray-200);font-size:0.95rem}
+.result-step:last-child{border:none}
+.result-step .label{color:var(--gray-600);font-size:0.82rem}
+.result-step .value{font-weight:700;font-family:var(--font-mono);color:var(--navy)}
+.result-final{margin-top:0.75rem;padding:1rem;background:var(--navy-deep);border-radius:8px;text-align:center}
+.result-final .big{font-family:var(--font-display);font-size:1.8rem;color:var(--gold-light)}
+.result-final .sub{color:var(--gray-400);font-size:0.85rem;margin-top:0.25rem}
 
-.tag {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.tag-teal { background: #CCFBF1; color: #0F766E; }
-.tag-gold { background: #FEF3C7; color: #92400E; }
-.tag-red { background: #FEE2E2; color: #991B1B; }
-.tag-green { background: #DCFCE7; color: #166534; }
+/* ── GRAPH ── */
+.graph-container{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 2px 6px rgba(0,0,0,0.06),0 8px 24px rgba(0,0,0,0.06);border:1px solid var(--gray-200);margin:1.5rem 0}
+.graph-controls{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.graph-btn{padding:0.5rem 1rem;border:2px solid var(--gray-200);border-radius:8px;background:var(--white);font-family:var(--font-body);font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--dark)}
+.graph-btn:hover{border-color:var(--teal)}
+.graph-btn.active{background:var(--teal);color:var(--white);border-color:var(--teal)}
+canvas{width:100%;max-width:600px;display:block;margin:0 auto}
+.graph-caption{text-align:center;color:var(--gray-600);font-size:0.9rem;margin-top:1rem;font-style:italic}
 
-.highlight { color: var(--teal); font-weight: 600; }
-.highlight-gold { color: var(--gold); font-weight: 600; }
-.highlight-red { color: var(--red); font-weight: 600; }
-.highlight-green { color: var(--green); font-weight: 600; }
+/* ── FLASHCARDS ── */
+.flashcard-deck{perspective:1000px;margin:1.5rem 0}
+.flashcard{width:100%;min-height:220px;position:relative;cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard-face{position:absolute;inset:0;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;backface-visibility:hidden;text-align:center}
+.flashcard-front{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:var(--white)}
+.flashcard-front h3{font-family:var(--font-display);font-size:1.5rem;margin-bottom:0.5rem}
+.flashcard-front p{color:var(--gray-400);font-size:0.9rem}
+.flashcard-back{background:var(--white);border:2px solid var(--teal);transform:rotateY(180deg)}
+.flashcard-back p{font-size:1.1rem;color:var(--dark);line-height:1.5}
+.flashcard-back .formula{font-family:var(--font-mono);font-size:1.3rem;color:var(--teal);font-weight:600;margin-top:0.5rem}
+.flashcard-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1rem}
+.flashcard-nav button{padding:0.5rem 1.25rem;border:2px solid var(--gray-200);border-radius:8px;background:var(--white);font-family:var(--font-body);font-weight:600;cursor:pointer;transition:all 0.2s;font-size:0.9rem}
+.flashcard-nav button:hover{border-color:var(--teal);color:var(--teal)}
+.flashcard-nav span{font-weight:600;color:var(--gray-600);min-width:60px;text-align:center}
+.flip-hint{color:var(--gray-400);font-size:0.82rem;text-align:center;margin-top:0.5rem}
 
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+/* ── QUIZ ── */
+.quiz-q{margin-bottom:2rem}
+.quiz-q h4{font-family:var(--font-display);font-size:1.1rem;color:var(--navy);margin-bottom:1rem}
+.quiz-options{display:flex;flex-direction:column;gap:0.5rem}
+.quiz-opt{padding:0.85rem 1.25rem;border:2px solid var(--gray-200);border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:0.95rem;position:relative}
+.quiz-opt:hover:not(.locked){border-color:var(--teal);background:var(--teal-bg)}
+.quiz-opt.correct{border-color:var(--green);background:#DCFCE7;color:#166534}
+.quiz-opt.wrong{border-color:var(--red);background:#FEE2E2;color:#991B1B}
+.quiz-opt.locked{cursor:default;opacity:0.7}
+.quiz-opt.correct.locked,.quiz-opt.wrong.locked{opacity:1}
+.quiz-explanation{margin-top:0.75rem;padding:0.85rem;border-radius:8px;font-size:0.9rem;display:none}
+.quiz-explanation.show{display:block;animation:fadeUp 0.3s ease}
+.quiz-explanation.correct-exp{background:#DCFCE7;color:#166534}
+.quiz-explanation.wrong-exp{background:#FEE2E2;color:#991B1B}
+.quiz-score{text-align:center;padding:2rem;background:var(--navy-deep);border-radius:16px;color:var(--white)}
+.quiz-score .big{font-family:var(--font-display);font-size:3rem;color:var(--gold-light)}
+.quiz-score p{color:var(--gray-400);margin-top:0.5rem}
+.quiz-reset{margin-top:1rem;padding:0.65rem 1.5rem;background:var(--teal);color:var(--white);border:none;border-radius:8px;font-family:var(--font-body);font-weight:600;cursor:pointer;font-size:0.95rem}
 
-/* ─── GRAPH CONTAINER ─── */
-.graph-wrap {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  border: 1px solid var(--gray-200);
-  text-align: center;
-}
-.graph-wrap canvas {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-.graph-caption {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  margin-top: 0.75rem;
-}
+/* ── RIPPLE VIS ── */
+.ripple-vis{display:flex;gap:0.4rem;overflow-x:auto;padding:1rem 0;scrollbar-width:thin}
+.ripple-block{min-width:90px;padding:0.75rem;border-radius:10px;text-align:center;flex-shrink:0;transition:all 0.4s}
+.ripple-block .round{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:0.8;margin-bottom:0.25rem}
+.ripple-block .amt{font-family:var(--font-mono);font-size:1.2rem;font-weight:700}
+.ripple-arrow{display:flex;align-items:center;color:var(--gray-400);font-size:1.2rem;flex-shrink:0}
+.ripple-total{margin-top:1rem;text-align:center;font-size:1.1rem}
+.ripple-total strong{font-family:var(--font-mono);color:var(--teal);font-size:1.4rem}
+.mpc-slider{margin:1rem 0}
+.mpc-slider label{font-weight:600;color:var(--navy);font-size:0.95rem}
+.mpc-slider input[type="range"]{width:100%;margin:0.5rem 0;accent-color:var(--teal);height:6px}
+.mpc-val{font-family:var(--font-mono);color:var(--teal);font-size:1.5rem;font-weight:700;text-align:center}
 
-/* ─── INTERACTIVE MULTIPLIER CALC ─── */
-.calc-wrap {
-  background: linear-gradient(135deg, var(--navy-deep) 0%, #1E3A5F 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 1.5rem 0;
-  color: var(--white);
-}
-.calc-wrap h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--teal-glow);
-  margin-bottom: 1rem;
-}
-.calc-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
-}
-.calc-row label {
-  font-weight: 600;
-  min-width: 120px;
-  font-size: 0.95rem;
-}
-.calc-row input, .calc-row select {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white);
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  width: 160px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.calc-row input:focus, .calc-row select:focus {
-  border-color: var(--teal-light);
-}
-.calc-row select option { background: var(--navy); color: var(--white); }
-.calc-result {
-  background: rgba(13,148,136,0.15);
-  border: 1px solid rgba(13,148,136,0.3);
-  border-radius: 10px;
-  padding: 1.25rem;
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-}
-.calc-result .big-num {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--teal-glow);
-}
-.calc-result .label {
-  font-size: 0.85rem;
-  color: var(--gray-400);
-  margin-bottom: 0.25rem;
-}
+/* ── SRAS INTERACTIVE ── */
+.sras-scenario{padding:1rem 1.25rem;border:2px solid var(--gray-200);border-radius:10px;margin-bottom:0.75rem;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center}
+.sras-scenario:hover{border-color:var(--teal);background:var(--teal-bg)}
+.sras-scenario.active{border-color:var(--teal);background:var(--teal-bg)}
+.sras-scenario .event{font-weight:600;color:var(--dark)}
+.sras-scenario .shift{font-family:var(--font-mono);font-weight:700;font-size:1.1rem;opacity:0;transition:opacity 0.3s}
+.sras-scenario.answered .shift{opacity:1}
 
-/* ─── QUIZ ─── */
-.quiz-card {
-  background: var(--white);
-  border-radius: 12px;
-  padding: 1.75rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid var(--gray-200);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-.quiz-card .q-num {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--teal);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-}
-.quiz-card .q-text {
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.quiz-opt {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 0.85rem 1.1rem;
-  border-radius: 8px;
-  border: 2px solid var(--gray-200);
-  background: var(--white);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--gray-900);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.quiz-opt:hover:not(.disabled) {
-  border-color: var(--teal);
-  background: #F0FDFA;
-}
-.quiz-opt.correct {
-  border-color: var(--green);
-  background: #DCFCE7;
-  color: #166534;
-  font-weight: 600;
-}
-.quiz-opt.wrong {
-  border-color: var(--red);
-  background: #FEE2E2;
-  color: #991B1B;
-}
-.quiz-opt.disabled { cursor: default; opacity: 0.7; }
-.quiz-explain {
-  display: none;
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background: var(--cream);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  border-left: 3px solid var(--gold);
-}
-.quiz-explain.show { display: block; animation: fadeIn 0.3s ease; }
+/* ── SECTION DIVIDER ── */
+.divider{padding:4rem 2rem;background:var(--navy);text-align:center;position:relative;overflow:hidden}
+.divider::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.1),transparent 70%);top:-100px;right:-50px}
+.divider h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.5rem);color:var(--white);margin-bottom:0.5rem;position:relative}
+.divider p{color:var(--gray-400);font-size:1.05rem;position:relative}
 
-.score-bar {
-  background: var(--navy);
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  color: var(--white);
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-.score-bar .score-label { font-weight: 600; font-size: 0.95rem; }
-.score-bar .score-num {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--teal-glow);
-}
-.btn-reset {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white);
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.btn-reset:hover { background: rgba(255,255,255,0.2); }
+/* ── FOOTER ── */
+footer{background:var(--navy-deep);color:var(--gray-400);text-align:center;padding:2rem;font-size:0.85rem}
 
-/* ─── FLASHCARDS ─── */
-.flashcard-deck {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1.5rem 0;
-}
-.flashcard {
-  width: 100%;
-  max-width: 500px;
-  min-height: 260px;
-  perspective: 1000px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-}
-.flashcard-inner {
-  position: relative;
-  width: 100%;
-  min-height: 260px;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-}
-.flashcard.flipped .flashcard-inner {
-  transform: rotateY(180deg);
-}
-.flashcard-front, .flashcard-back {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  min-height: 260px;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
-}
-.flashcard-front {
-  background: linear-gradient(135deg, var(--navy-deep) 0%, #1E3A5F 100%);
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.flashcard-front .fc-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--teal-light);
-  margin-bottom: 1rem;
-}
-.flashcard-front .fc-term {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-.flashcard-back {
-  background: var(--white);
-  border: 2px solid var(--teal);
-  transform: rotateY(180deg);
-  color: var(--gray-900);
-}
-.flashcard-back .fc-def {
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-.flashcard-back .fc-formula {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  color: var(--teal);
-  font-weight: 600;
-  margin-top: 0.75rem;
-}
-.fc-controls {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-.fc-btn {
-  background: var(--navy);
-  color: var(--white);
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.fc-btn:hover { background: var(--teal); }
-.fc-counter {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--gray-500);
-}
-.fc-tap-hint {
-  font-size: 0.8rem;
-  color: var(--gray-400);
-  margin-top: 0.5rem;
-}
+/* ── ANIMS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
 
-/* ─── RIPPLE VISUAL ─── */
-.ripple-visual {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-  flex-wrap: nowrap;
-}
-.ripple-block {
-  flex-shrink: 0;
-  width: 90px;
-  padding: 0.75rem 0.5rem;
-  border-radius: 8px;
-  text-align: center;
-  color: var(--white);
-  font-weight: 700;
-  transition: transform 0.2s;
-}
-.ripple-block:hover { transform: scale(1.05); }
-.ripple-block .rb-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; }
-.ripple-block .rb-amt { font-family: var(--font-mono); font-size: 1rem; margin-top: 0.2rem; }
-.ripple-arrow { color: var(--gray-400); font-size: 1.2rem; flex-shrink: 0; }
+/* ── TABS ── */
+.tabs{display:flex;gap:0.25rem;margin-bottom:1.5rem;border-bottom:2px solid var(--gray-200);padding-bottom:0}
+.tab-btn{padding:0.65rem 1.25rem;border:none;background:none;font-family:var(--font-body);font-weight:600;font-size:0.9rem;color:var(--gray-400);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s}
+.tab-btn:hover{color:var(--dark)}
+.tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
+.tab-content{display:none}
+.tab-content.active{display:block;animation:fadeUp 0.3s ease}
 
-/* ─── CHEAT SHEET TABLE ─── */
-.cs-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  font-size: 0.9rem;
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav{padding:0 1rem;gap:1rem}
+  .nav-links a{font-size:0.75rem;padding:0.35rem 0.6rem}
+  .section{padding:3rem 1.25rem}
+  .calc-grid{gap:1rem}
+  .hero h1{font-size:2.2rem}
 }
-.cs-table th {
-  background: var(--navy);
-  color: var(--white);
-  padding: 0.75rem 1rem;
-  text-align: left;
-  font-weight: 600;
-}
-.cs-table td {
-  padding: 0.65rem 1rem;
-  border-bottom: 1px solid var(--gray-200);
-}
-.cs-table tr:nth-child(even) td { background: var(--gray-100); }
-.shift-right { color: var(--green); font-weight: 700; }
-.shift-left { color: var(--red); font-weight: 700; }
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--navy-deep);
-  color: var(--gray-400);
-  text-align: center;
-  padding: 2rem 1.5rem;
-  font-size: 0.85rem;
-}
-footer strong { color: var(--teal-light); }
-
-/* ─── STEP BOXES ─── */
-.steps { counter-reset: step; }
-.step-item {
-  position: relative;
-  padding-left: 3rem;
-  margin-bottom: 1.25rem;
-}
-.step-item::before {
-  counter-increment: step;
-  content: counter(step);
-  position: absolute;
-  left: 0; top: 0;
-  width: 2rem; height: 2rem;
-  background: var(--teal);
-  color: var(--white);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-.step-item strong { color: var(--navy); }
-
-/* ─── SLIDER ─── */
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 3px;
-  outline: none;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px; height: 20px;
-  background: var(--teal-glow);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.emoji-icon { font-size: 1.3rem; margin-right: 0.4rem; }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">AP <span>Macro</span></div>
+  <div class="nav-links">
+    <a data-target="multipliers" onclick="scrollToSection('multipliers')">Multipliers</a>
+    <a data-target="calculator" onclick="scrollToSection('calculator')">Calculator</a>
+    <a data-target="ripple" onclick="scrollToSection('ripple')">Ripple Effect</a>
+    <a data-target="sras" onclick="scrollToSection('sras')">SRAS</a>
+    <a data-target="sras-game" onclick="scrollToSection('sras-game')">SRAS Game</a>
+    <a data-target="flashcards" onclick="scrollToSection('flashcards')">Flashcards</a>
+    <a data-target="quiz" onclick="scrollToSection('quiz')">Quiz</a>
+  </div>
+</nav>
+<div class="progress-bar" id="progressBar"></div>
+
 <!-- HERO -->
-<div class="hero">
+<section class="hero" id="top">
   <div class="hero-content">
-    <div class="hero-label">AP Macroeconomics &mdash; Units 3.2 &amp; 3.3</div>
-    <h1>Multipliers &amp; <span>Short-Run Aggregate Supply</span></h1>
-    <div class="hero-bar"></div>
-    <p class="hero-sub">Interactive study guide &mdash; Mr. Mayer's class</p>
+    <div class="hero-badge">Units 3.2 & 3.3</div>
+    <h1>Multipliers & <span>Short-Run Aggregate Supply</span></h1>
+    <p>An interactive study guide for AP Macroeconomics. Learn by doing, not just reading.</p>
+    <button class="hero-btn" onclick="document.getElementById('multipliers').scrollIntoView({behavior:'smooth'})">
+      Start Learning ↓
+    </button>
   </div>
-</div>
+</section>
 
-<!-- NAV TABS -->
-<div class="nav-wrap">
-  <div class="nav-tabs">
-    <button class="nav-tab active" data-tab="learn">📖 Learn</button>
-    <button class="nav-tab" data-tab="calc">🧮 Calculator</button>
-    <button class="nav-tab" data-tab="graphs">📊 Graphs</button>
-    <button class="nav-tab" data-tab="flash">🃏 Flashcards</button>
-    <button class="nav-tab" data-tab="quiz">✏️ Quiz</button>
-    <button class="nav-tab" data-tab="cheat">📋 Cheat Sheet</button>
-  </div>
-</div>
+<!-- ═══ PART 1: MULTIPLIERS ═══ -->
+<section class="section" id="multipliers">
+  <div class="section-label">Unit 3.2</div>
+  <h2>The Multiplier Effect</h2>
+  <p>How a single dollar ripples through the entire economy, creating way more than its face value in total spending.</p>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- LEARN TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section active" id="sec-learn">
-  <h2>Part 1: The Multiplier Effect</h2>
-  <p class="section-sub">How a single dollar ripples through the entire economy</p>
-
-  <div class="card card-accent">
-    <h3><span class="emoji-icon">💰</span> Disposable Income</h3>
-    <p><strong>Disposable Income</strong> is your after-tax income &mdash; the money you actually get to keep. You can only do <strong>two things</strong> with it:</p>
-    <p style="margin-top:0.5rem"><span class="highlight">1. Spend it</span> (Consumption) &nbsp;&nbsp; <span class="highlight-gold">2. Save it</span> (Savings)</p>
-    <div style="background:var(--cream);padding:1rem;border-radius:8px;margin-top:1rem;font-size:0.95rem">
-      <strong>Example:</strong> You earn $500 at your summer job. Taxes take $75. Your disposable income is <strong>$425</strong>. You spend $350 on sneakers, food, and gas, and save $75.
+  <!-- MPC & MPS -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon teal">💰</div>
+      <h3>Disposable Income</h3>
+    </div>
+    <p>Your <strong>disposable income</strong> is your after-tax paycheck. The money you actually get to use. You do exactly two things with it:</p>
+    <div class="two-col" style="margin-top:1rem">
+      <div style="padding:1rem;background:var(--teal-bg);border-radius:10px;text-align:center">
+        <div style="font-size:1.5rem">🛍️</div>
+        <div style="font-weight:700;color:var(--teal);margin:0.25rem 0">Spend It</div>
+        <div style="font-size:0.9rem;color:var(--gray-600)">Consumption (C)</div>
+      </div>
+      <div style="padding:1rem;background:var(--cream);border-radius:10px;text-align:center">
+        <div style="font-size:1.5rem">🏦</div>
+        <div style="font-weight:700;color:var(--gold);margin:0.25rem 0">Save It</div>
+        <div style="font-size:0.9rem;color:var(--gray-600)">Savings (S)</div>
+      </div>
     </div>
   </div>
 
   <div class="two-col">
-    <div class="card card-accent">
-      <h3>MPC</h3>
-      <p>The <strong>Marginal Propensity to Consume</strong> is the fraction of every extra dollar you <span class="highlight">spend</span>.</p>
-      <div class="formula-box">MPC = ΔC / ΔDI</div>
-      <p style="font-size:0.9rem;color:var(--gray-500);margin-top:0.5rem">If MPC = 0.90, you spend 90¢ of every extra dollar.</p>
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-icon teal">📈</div>
+        <h3>MPC</h3>
+      </div>
+      <p><strong>Marginal Propensity to Consume</strong>: the fraction of every extra dollar you <em>spend</em>.</p>
+      <div class="formula-box">MPC = <span>ΔC</span> / <span>ΔDI</span></div>
+      <div class="highlight">Your grandma gives you $100. You spend $80 on stuff and save $20. Your MPC = <strong>0.80</strong>.</div>
     </div>
-    <div class="card card-gold">
-      <h3>MPS</h3>
-      <p>The <strong>Marginal Propensity to Save</strong> is the fraction of every extra dollar you <span class="highlight-gold">save</span>.</p>
-      <div class="formula-box">MPS = ΔS / ΔDI</div>
-      <p style="font-size:0.9rem;color:var(--gray-500);margin-top:0.5rem">If MPS = 0.10, you save 10¢ of every extra dollar.</p>
-    </div>
-  </div>
-
-  <div class="card card-dark">
-    <h3>The Golden Rule</h3>
-    <div class="formula-box big">MPC + MPS = 1</div>
-    <p style="text-align:center;color:var(--gray-400)">You either spend it or save it. There's no third option!</p>
-  </div>
-
-  <div class="card">
-    <h3><span class="emoji-icon">🌊</span> The Ripple Effect</h3>
-    <p>One person's spending becomes another person's income. Your spending at Chipotle pays the worker's wage. That worker spends their paycheck at Target. The Target employee spends at the gas station... and so on.</p>
-    <p style="margin-top:0.75rem;font-weight:600">Example: $1,000 government spending with MPC = 0.80</p>
-    <div class="ripple-visual">
-      <div class="ripple-block" style="background:var(--teal)"><div class="rb-label">Gov't</div><div class="rb-amt">$1,000</div></div>
-      <div class="ripple-arrow">→</div>
-      <div class="ripple-block" style="background:var(--teal-light)"><div class="rb-label">Round 1</div><div class="rb-amt">$800</div></div>
-      <div class="ripple-arrow">→</div>
-      <div class="ripple-block" style="background:#2DD4BF"><div class="rb-label">Round 2</div><div class="rb-amt">$640</div></div>
-      <div class="ripple-arrow">→</div>
-      <div class="ripple-block" style="background:#5EEAD4;color:var(--navy)"><div class="rb-label">Round 3</div><div class="rb-amt">$512</div></div>
-      <div class="ripple-arrow">→</div>
-      <div class="ripple-block" style="background:#99F6E4;color:var(--navy)"><div class="rb-label">Round 4</div><div class="rb-amt">$410</div></div>
-      <div class="ripple-arrow">→</div>
-      <div class="ripple-block" style="background:var(--gray-200);color:var(--gray-500)"><div class="rb-label">...</div><div class="rb-amt">...</div></div>
-    </div>
-    <div style="background:var(--cream);padding:1rem;border-radius:8px;margin-top:0.5rem;text-align:center">
-      <strong>Total ΔAD = $5,000</strong> &mdash; The initial $1,000 created 5x the economic activity!
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-icon gold">💎</div>
+        <h3>MPS</h3>
+      </div>
+      <p><strong>Marginal Propensity to Save</strong>: the fraction of every extra dollar you <em>save</em>.</p>
+      <div class="formula-box">MPS = <span>ΔS</span> / <span>ΔDI</span></div>
+      <div class="highlight">Same example: you saved $20 of the $100. Your MPS = <strong>0.20</strong>.</div>
     </div>
   </div>
 
-  <div class="two-col">
-    <div class="card card-accent">
-      <h3>Spending Multiplier</h3>
-      <div class="formula-box">1 / MPS &nbsp; or &nbsp; 1 / (1 − MPC)</div>
-      <p style="margin-top:0.75rem;font-size:0.9rem">If MPC = 0.80: <strong>1 / 0.20 = 5</strong></p>
-      <p style="font-size:0.85rem;color:var(--gray-500);margin-top:0.25rem">The LESS people save, the BIGGER the multiplier.</p>
+  <div class="card fade-in" style="background:var(--navy-deep);color:var(--white);text-align:center;padding:2rem">
+    <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold-light)">MPC + MPS = 1</div>
+    <p style="color:var(--gray-400);margin-top:0.5rem;font-size:1rem">You either spend it or save it. There is no third option.</p>
+    <div style="margin-top:0.75rem;font-family:var(--font-mono);color:var(--teal-light)">MPC = 1 − MPS &nbsp;&nbsp;|&nbsp;&nbsp; MPS = 1 − MPC</div>
+  </div>
+
+  <!-- SPENDING MULTIPLIER -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon navy">🔄</div>
+      <h3>The Spending Multiplier</h3>
     </div>
-    <div class="card card-gold">
-      <h3>Tax Multiplier</h3>
-      <div class="formula-box">−MPC / MPS &nbsp; or &nbsp; −MPC / (1 − MPC)</div>
-      <p style="margin-top:0.75rem;font-size:0.9rem">If MPC = 0.80: <strong>−0.80 / 0.20 = −4</strong></p>
-      <p style="font-size:0.85rem;color:var(--gray-500);margin-top:0.25rem">Tax cuts are positive (+). Tax increases are negative (−).</p>
+    <p>When someone spends money, it becomes someone else's income. That person spends part of it, which becomes another person's income... This chain reaction means <strong>an initial change in spending causes a LARGER change in Aggregate Demand</strong>.</p>
+    <div class="two-col" style="margin-top:1rem">
+      <div>
+        <div class="formula-box">Multiplier = <span>1</span> / <span>MPS</span></div>
+        <p style="text-align:center;font-size:0.85rem;color:var(--gray-600)">or equivalently: 1 / (1 − MPC)</p>
+      </div>
+      <div>
+        <div class="formula-box">ΔAD = Δ Spending × <span>Multiplier</span></div>
+        <p style="text-align:center;font-size:0.85rem;color:var(--gray-600)">applies to changes in C, I, G, or Xn</p>
+      </div>
     </div>
-  </div>
-
-  <div class="card">
-    <h3>Why Is the Tax Multiplier Smaller?</h3>
-    <p>When the government <strong>spends</strong> $100, all $100 enters the economy immediately. But when the government <strong>cuts taxes</strong> by $100, people save part of it first, so less enters the spending stream.</p>
-    <p style="margin-top:0.5rem;font-weight:600;color:var(--teal)">The spending multiplier is always exactly 1 MORE than the tax multiplier.</p>
-  </div>
-
-  <div class="card card-dark">
-    <h3>Balanced Budget Multiplier</h3>
-    <p>When ΔG = ΔT (government increases spending AND taxes by the same amount):</p>
-    <div class="formula-box big">Balanced Budget Multiplier = 1</div>
-    <p style="text-align:center;color:var(--gray-400);margin-top:0.5rem">Always. Regardless of MPC. A $500B increase in G with a $500B tax increase = $500B ΔAD.</p>
-  </div>
-
-  <h2 style="margin-top:3rem">Part 2: Short-Run Aggregate Supply</h2>
-  <p class="section-sub">Understanding the supply side of the economy</p>
-
-  <div class="card card-accent">
-    <h3><span class="emoji-icon">🏭</span> Aggregate Supply</h3>
-    <p><strong>Aggregate Supply</strong> = the total level of Real GDP that all firms will produce at each price level.</p>
-  </div>
-
-  <div class="two-col">
-    <div class="card card-accent">
-      <h3>Long-Run (LRAS)</h3>
-      <span class="tag tag-teal">FLEXIBLE PRICES</span>
-      <p style="margin-top:0.75rem">In the long run, ALL input prices (wages, rent, materials) fully adjust to price level changes. Real profits don't change, so output stays at <strong>full employment (Yf)</strong>.</p>
-      <p style="margin-top:0.5rem;font-weight:600">LRAS is <span class="highlight">VERTICAL</span> &mdash; like the PPC.</p>
-    </div>
-    <div class="card card-gold">
-      <h3>Short-Run (SRAS)</h3>
-      <span class="tag tag-gold">STICKY PRICES</span>
-      <p style="margin-top:0.75rem">In the short run, input prices are <strong>sticky</strong> &mdash; wages and contracts take time to adjust. When PL rises, costs stay the same, so profits rise and firms produce more.</p>
-      <p style="margin-top:0.5rem;font-weight:600">SRAS is <span class="highlight-gold">UPWARD SLOPING</span>.</p>
+    <div class="highlight" style="margin-top:1rem">
+      <strong>Key Insight:</strong> The LESS people save (smaller MPS), the BIGGER the multiplier. If everyone spent every dime (MPC=1), the multiplier would be infinite!
     </div>
   </div>
 
-  <div class="card">
-    <h3><span class="emoji-icon">🍕</span> The Pizza Shop Analogy</h3>
-    <p>Imagine you own a pizza shop. Your <strong>costs are sticky</strong>: rent is locked in ($2K/month), workers are at $15/hr (contract), and flour was ordered at last month's price.</p>
-    <p style="margin-top:0.75rem">Now the price level rises and you can charge <strong>$15/pizza instead of $12</strong>. Your costs haven't changed, but your revenue went up! So you hire more workers and make more pizzas.</p>
-    <p style="margin-top:0.75rem;font-style:italic;color:var(--teal)">This is exactly why SRAS slopes upward: sticky costs + rising prices = higher profits = more output.</p>
-  </div>
-
-  <div class="card">
-    <h3>What Shifts SRAS?</h3>
-    <p style="margin-bottom:0.75rem">Everything comes down to: <strong>Per-Unit Production Cost = Total Input Cost / Total Output</strong></p>
-    <div class="formula-box" style="text-align:left;font-size:0.95rem;font-family:var(--font-body);font-weight:normal">
-      <strong style="color:var(--teal)">1. Input Prices</strong> &mdash; Wages (75% of costs!), raw materials, energy, foreign resources<br>
-      <strong style="color:var(--gold)">2. Productivity</strong> &mdash; Total output / Total inputs (technology, training, efficiency)<br>
-      <strong style="color:var(--red)">3. Legal-Institutional Environment</strong> &mdash; Business taxes, subsidies, government regulation
+  <!-- TAX MULTIPLIER -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon red">📋</div>
+      <h3>The Tax Multiplier</h3>
+    </div>
+    <p>Taxes pull money OUT of the circular flow. The tax multiplier is <strong>always smaller</strong> than the spending multiplier (by exactly 1) because when people get a tax cut, they save part of it first.</p>
+    <div class="two-col" style="margin-top:1rem">
+      <div style="padding:1.25rem;background:#FEE2E2;border-radius:10px">
+        <div style="font-weight:700;color:var(--red);margin-bottom:0.5rem">Tax Increase (−)</div>
+        <div class="formula-box" style="font-size:1rem">Tax Mult = <span>−MPC</span> / <span>MPS</span></div>
+      </div>
+      <div style="padding:1.25rem;background:#DCFCE7;border-radius:10px">
+        <div style="font-weight:700;color:var(--green);margin-bottom:0.5rem">Tax Cut (+)</div>
+        <div class="formula-box" style="font-size:1rem">Tax Mult = <span>+MPC</span> / <span>MPS</span></div>
+      </div>
     </div>
   </div>
 
-  <div class="two-col">
-    <div class="card" style="background:#F0FDFA">
-      <h3 class="highlight-green">SRAS Shifts RIGHT →</h3>
-      <p><strong>Lower per-unit costs:</strong></p>
-      <ul style="margin:0.5rem 0 0 1.2rem;font-size:0.9rem;line-height:1.8">
-        <li>Wages decrease</li>
-        <li>Raw material prices fall</li>
-        <li>Productivity increases (AI, robots, training)</li>
-        <li>Business tax cuts / subsidies</li>
-        <li>Deregulation</li>
-        <li>Strong dollar (cheaper imports)</li>
-      </ul>
+  <!-- BALANCED BUDGET -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon gold">⚖️</div>
+      <h3>Balanced Budget Multiplier</h3>
     </div>
-    <div class="card" style="background:#FEF2F2">
-      <h3 class="highlight-red">← SRAS Shifts LEFT</h3>
-      <p><strong>Higher per-unit costs:</strong></p>
-      <ul style="margin:0.5rem 0 0 1.2rem;font-size:0.9rem;line-height:1.8">
-        <li>Wages increase</li>
-        <li>Raw material prices rise</li>
-        <li>Productivity decreases</li>
-        <li>Business tax increases</li>
-        <li>More regulation (compliance costs)</li>
-        <li>Weak dollar (pricier imports)</li>
-      </ul>
-    </div>
+    <p>When government spending increases by the SAME amount as a tax increase (ΔG = ΔT), the multipliers partially cancel out:</p>
+    <div class="formula-box" style="font-size:1.5rem">Balanced Budget Multiplier = <span>1</span></div>
+    <p style="margin-top:0.75rem">The change in AD always equals the change in government spending. Always. Every time. Regardless of MPC.</p>
+    <div class="highlight"><strong>Why?</strong> 1/MPS + (−MPC/MPS) = (1 − MPC)/MPS = MPS/MPS = 1</div>
   </div>
-</div>
+</section>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- CALCULATOR TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section" id="sec-calc">
+<!-- ═══ CALCULATOR ═══ -->
+<section class="section" id="calculator">
+  <div class="section-label">Interactive Tool</div>
   <h2>Multiplier Calculator</h2>
-  <p class="section-sub">Plug in values and see the multiplier effect in real time</p>
+  <p>Plug in any values and see the step-by-step solution. Great for checking your homework.</p>
 
-  <div class="calc-wrap">
-    <h3>Interactive Multiplier</h3>
-    <div class="calc-row">
-      <label>MPC:</label>
-      <input type="range" id="mpcSlider" min="0.05" max="0.95" step="0.05" value="0.80" style="width:200px">
-      <span id="mpcVal" style="font-family:var(--font-mono);font-size:1.1rem;min-width:45px">0.80</span>
-    </div>
-    <div class="calc-row">
-      <label>MPS:</label>
-      <span id="mpsVal" style="font-family:var(--font-mono);font-size:1.1rem;color:var(--gold-light)">0.20</span>
-    </div>
-    <div class="calc-row">
-      <label>Type:</label>
-      <select id="calcType">
-        <option value="spending">Spending (ΔC, I, G, Xn)</option>
-        <option value="tax-up">Tax Increase</option>
-        <option value="tax-down">Tax Cut</option>
-        <option value="balanced">Balanced Budget</option>
-      </select>
-    </div>
-    <div class="calc-row">
-      <label>Amount ($B):</label>
-      <input type="number" id="calcAmt" value="100" min="1">
+  <div class="calc-wrap fade-in">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="spending-tab">Spending</button>
+      <button class="tab-btn" data-tab="tax-tab">Tax</button>
+      <button class="tab-btn" data-tab="balanced-tab">Balanced Budget</button>
     </div>
 
-    <div class="calc-result" id="calcResult">
-      <div class="label">Multiplier</div>
-      <div class="big-num" id="calcMult">5</div>
-      <div style="margin-top:0.75rem"></div>
-      <div class="label">Change in Aggregate Demand</div>
-      <div class="big-num" id="calcAD">+$500B</div>
-      <div id="calcSteps" style="margin-top:1rem;font-size:0.85rem;color:var(--gray-400);line-height:1.7"></div>
+    <!-- SPENDING TAB -->
+    <div class="tab-content active" id="spending-tab">
+      <div class="calc-grid">
+        <div class="calc-group">
+          <label>MPC (0 to 1)</label>
+          <input type="number" id="s-mpc" step="0.01" min="0" max="1" placeholder="e.g. 0.80">
+        </div>
+        <div class="calc-group">
+          <label>Change in Spending ($B)</label>
+          <input type="number" id="s-spending" placeholder="e.g. 50">
+        </div>
+        <div class="calc-group">
+          <label>Component</label>
+          <select id="s-component">
+            <option>Gov't Spending (G)</option>
+            <option>Investment (I)</option>
+            <option>Consumption (C)</option>
+            <option>Net Exports (Xn)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSpending()">Calculate Change in AD</button>
+      <div class="calc-result" id="s-result"></div>
+    </div>
+
+    <!-- TAX TAB -->
+    <div class="tab-content" id="tax-tab">
+      <div class="calc-grid">
+        <div class="calc-group">
+          <label>MPC (0 to 1)</label>
+          <input type="number" id="t-mpc" step="0.01" min="0" max="1" placeholder="e.g. 0.80">
+        </div>
+        <div class="calc-group">
+          <label>Change in Taxes ($B)</label>
+          <input type="number" id="t-tax" placeholder="e.g. 150">
+        </div>
+        <div class="calc-group">
+          <label>Direction</label>
+          <select id="t-dir">
+            <option value="increase">Tax Increase</option>
+            <option value="decrease">Tax Decrease</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcTax()">Calculate Change in AD</button>
+      <div class="calc-result" id="t-result"></div>
+    </div>
+
+    <!-- BALANCED TAB -->
+    <div class="tab-content" id="balanced-tab">
+      <div class="calc-grid">
+        <div class="calc-group">
+          <label>Change in G AND T ($B)</label>
+          <input type="number" id="b-amount" placeholder="e.g. 500">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBalanced()">Calculate Change in AD</button>
+      <div class="calc-result" id="b-result"></div>
     </div>
   </div>
+</section>
 
-  <div class="card">
-    <h3>How It Works</h3>
-    <div class="steps">
-      <div class="step-item"><strong>Find MPC &amp; MPS</strong> &mdash; Remember, MPC + MPS = 1.</div>
-      <div class="step-item"><strong>Choose the multiplier type</strong> &mdash; Spending (1/MPS) or Tax (−MPC/MPS).</div>
-      <div class="step-item"><strong>Calculate</strong> &mdash; Multiply the initial change by the multiplier.</div>
-      <div class="step-item"><strong>Determine direction</strong> &mdash; Positive = AD shifts right. Negative = AD shifts left.</div>
-    </div>
-  </div>
-</div>
+<!-- ═══ RIPPLE EFFECT ═══ -->
+<section class="section" id="ripple">
+  <div class="section-label">Visualization</div>
+  <h2>See the Ripple Effect</h2>
+  <p>Drag the slider to change MPC and watch how spending cascades through the economy.</p>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- GRAPHS TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section" id="sec-graphs">
-  <h2>Interactive Graphs</h2>
-  <p class="section-sub">Visualize the key economic models</p>
-
-  <div class="graph-wrap">
-    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:1rem">LRAS &mdash; Long-Run Aggregate Supply</h3>
-    <canvas id="graphLRAS" width="450" height="350"></canvas>
-    <p class="graph-caption">LRAS is vertical at full employment (Yf). Output is independent of the price level in the long run.</p>
-  </div>
-
-  <div class="graph-wrap">
-    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:1rem">SRAS &mdash; Short-Run Aggregate Supply</h3>
-    <canvas id="graphSRAS" width="450" height="350"></canvas>
-    <p class="graph-caption">SRAS slopes upward because input prices are sticky. Higher PL → higher profits → more output.</p>
-  </div>
-
-  <div class="graph-wrap">
-    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:0.5rem">SRAS Shift Simulator</h3>
-    <p style="font-size:0.9rem;color:var(--gray-500);margin-bottom:1rem">Drag the slider to see how changes in per-unit costs shift SRAS</p>
-    <div style="max-width:300px;margin:0 auto 1rem">
-      <input type="range" id="srasShift" min="-2" max="2" step="1" value="0" style="width:100%">
-      <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--gray-500)">
-        <span>← Higher Costs</span><span>No Change</span><span>Lower Costs →</span>
+  <div class="card fade-in" style="padding:2rem">
+    <div class="mpc-slider">
+      <label>MPC: <span class="mpc-val" id="mpcDisplay">0.80</span></label>
+      <input type="range" id="mpcSlider" min="10" max="95" value="80" oninput="updateRipple()">
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--gray-400)">
+        <span>0.10 (big savers)</span>
+        <span>0.95 (big spenders)</span>
       </div>
     </div>
-    <canvas id="graphSRASShift" width="450" height="350"></canvas>
-    <p class="graph-caption" id="shiftCaption">SRAS at equilibrium. Drag the slider to shift.</p>
+    <div style="text-align:center;margin:0.5rem 0">
+      <span style="font-size:0.85rem;color:var(--gray-600)">Initial Spending: </span>
+      <span style="font-family:var(--font-mono);font-weight:700;color:var(--navy)">$1,000</span>
+      <span style="font-size:0.85rem;color:var(--gray-600);margin-left:1rem">Multiplier: </span>
+      <span style="font-family:var(--font-mono);font-weight:700;color:var(--teal)" id="multDisplay">5</span>
+    </div>
+    <div class="ripple-vis" id="rippleVis"></div>
+    <div class="ripple-total">Total Change in AD: <strong id="rippleTotal">$5,000</strong></div>
   </div>
+</section>
 
-  <div class="graph-wrap">
-    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:1rem">Full AD-AS Model</h3>
-    <canvas id="graphADAS" width="500" height="380"></canvas>
-    <p class="graph-caption">Equilibrium occurs where AD meets SRAS. LRAS marks full employment output (Yf).</p>
-  </div>
+<!-- ═══ PART 2: SRAS ═══ -->
+<div class="divider">
+  <h2>Part 2: Short-Run Aggregate Supply</h2>
+  <p>Understanding the supply side of the macroeconomy</p>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- FLASHCARDS TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section" id="sec-flash">
+<section class="section" id="sras">
+  <div class="section-label">Unit 3.3</div>
+  <h2>Aggregate Supply</h2>
+  <p>The total Real GDP that firms produce at each price level. It behaves very differently in the short run vs. the long run.</p>
+
+  <div class="two-col">
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-icon navy">📏</div>
+        <h3>LRAS (Long-Run)</h3>
+      </div>
+      <p>Input prices are <strong style="color:var(--teal)">fully flexible</strong>. Wages, contracts, and materials all adjust.</p>
+      <p style="margin-top:0.75rem">If prices rise, costs rise equally. Real profits stay the same, so output doesn't change.</p>
+      <div style="text-align:center;margin-top:1rem;padding:1rem;background:var(--gray-100);border-radius:10px">
+        <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--navy)">LRAS is VERTICAL</div>
+        <div style="font-size:0.85rem;color:var(--gray-600);margin-top:0.25rem">at full employment (Yf)</div>
+        <div style="font-size:0.82rem;color:var(--gray-400);margin-top:0.25rem">Think of it like the PPC</div>
+      </div>
+    </div>
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-icon gold">📐</div>
+        <h3>SRAS (Short-Run)</h3>
+      </div>
+      <p>Input prices are <strong style="color:var(--gold)">sticky</strong>. Wages and contracts take time to renegotiate.</p>
+      <p style="margin-top:0.75rem">If prices rise but costs stay fixed, firms earn more profit and produce more.</p>
+      <div style="text-align:center;margin-top:1rem;padding:1rem;background:var(--cream);border-radius:10px">
+        <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--navy)">SRAS slopes UPWARD</div>
+        <div style="font-size:0.85rem;color:var(--gray-600);margin-top:0.25rem">higher PL → more output</div>
+        <div style="font-size:0.82rem;color:var(--gray-400);margin-top:0.25rem">Sticky costs are the key</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky vs Flexible -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon teal">🍕</div>
+      <h3>The Pizza Shop Analogy</h3>
+    </div>
+    <p>You own a pizza shop. Your rent ($2,000/mo) is locked in a lease. Workers earn $15/hr by contract. Flour was ordered at last month's price.</p>
+    <p style="margin-top:0.75rem">Now imagine the <strong>price level rises</strong> and you can charge $15/pizza instead of $12. Your costs haven't changed yet, but revenue is up! So you hire more workers and make more pizza.</p>
+    <p style="margin-top:0.75rem;color:var(--teal);font-weight:700">This is EXACTLY why SRAS slopes upward: sticky costs + rising prices = higher profits = more output.</p>
+  </div>
+
+  <!-- SRAS Shifters -->
+  <div class="card fade-in">
+    <div class="card-header">
+      <div class="card-icon red">↔️</div>
+      <h3>What Shifts SRAS?</h3>
+    </div>
+    <p style="margin-bottom:1rem">Everything comes back to one concept: <strong>per-unit production cost</strong> (total input cost ÷ total output).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem">
+      <div style="padding:1.25rem;background:var(--teal-bg);border-radius:12px">
+        <div style="font-weight:700;color:var(--teal);margin-bottom:0.5rem;font-size:1.05rem">1. Input Prices</div>
+        <p style="font-size:0.9rem"><strong>Wages</strong> (75% of costs!), raw materials, energy, and foreign resource prices. Strong dollar = cheaper imports = SRAS right.</p>
+      </div>
+      <div style="padding:1.25rem;background:var(--cream);border-radius:12px">
+        <div style="font-weight:700;color:var(--gold);margin-bottom:0.5rem;font-size:1.05rem">2. Productivity</div>
+        <p style="font-size:0.9rem">More output per input = lower cost per unit. New tech (AI, robots), better training → SRAS shifts right.</p>
+      </div>
+      <div style="padding:1.25rem;background:#FEE2E2;border-radius:12px">
+        <div style="font-weight:700;color:var(--red);margin-bottom:0.5rem;font-size:1.05rem">3. Legal Environment</div>
+        <p style="font-size:0.9rem">Business taxes ↑ costs (SRAS left). Subsidies ↓ costs (SRAS right). Regulation ↑ compliance costs (SRAS left).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Graph -->
+  <div class="graph-container fade-in">
+    <h3 style="font-family:var(--font-display);color:var(--navy);margin-bottom:0.5rem">Interactive AD-AS Graph</h3>
+    <p style="font-size:0.9rem;color:var(--gray-600);margin-bottom:1rem">Click the buttons to see how different changes affect the model.</p>
+    <div class="graph-controls">
+      <button class="graph-btn active" onclick="setGraph('base',this)">Base Model</button>
+      <button class="graph-btn" onclick="setGraph('ad-right',this)">AD Increases</button>
+      <button class="graph-btn" onclick="setGraph('ad-left',this)">AD Decreases</button>
+      <button class="graph-btn" onclick="setGraph('sras-right',this)">SRAS Increases</button>
+      <button class="graph-btn" onclick="setGraph('sras-left',this)">SRAS Decreases</button>
+    </div>
+    <canvas id="adAsCanvas" width="600" height="420"></canvas>
+    <div class="graph-caption" id="graphCaption">Long-run equilibrium: AD meets SRAS at Yf on the LRAS.</div>
+  </div>
+</section>
+
+<!-- ═══ SRAS SHIFT GAME ═══ -->
+<section class="section" id="sras-game">
+  <div class="section-label">Practice Game</div>
+  <h2>SRAS Shift Challenge</h2>
+  <p>Click each scenario to reveal whether SRAS shifts left or right. Try to guess before you click!</p>
+
+  <div id="srasGameContainer" class="fade-in"></div>
+  <div style="text-align:center;margin-top:1rem">
+    <span style="font-weight:700;color:var(--navy)" id="srasScore"></span>
+  </div>
+</section>
+
+<!-- ═══ FLASHCARDS ═══ -->
+<section class="section" id="flashcards">
+  <div class="section-label">Study Tool</div>
   <h2>Flashcards</h2>
-  <p class="section-sub">Click to flip. Use arrows to cycle through all 16 terms.</p>
+  <p>Click to flip. Master these and you'll crush the exam.</p>
 
-  <div class="flashcard-deck">
+  <div class="flashcard-deck fade-in">
     <div class="flashcard" id="flashcard" onclick="flipCard()">
-      <div class="flashcard-inner" id="flashInner">
-        <div class="flashcard-front">
-          <div class="fc-label">Term</div>
-          <div class="fc-term" id="fcTerm"></div>
-        </div>
-        <div class="flashcard-back">
-          <div class="fc-def" id="fcDef"></div>
-          <div class="fc-formula" id="fcFormula"></div>
-        </div>
+      <div class="flashcard-face flashcard-front">
+        <h3 id="fc-front-title"></h3>
+        <p id="fc-front-sub"></p>
+      </div>
+      <div class="flashcard-face flashcard-back">
+        <p id="fc-back-text"></p>
+        <div class="formula" id="fc-back-formula"></div>
       </div>
     </div>
-    <p class="fc-tap-hint">Tap card to flip</p>
-    <div class="fc-controls">
-      <button class="fc-btn" onclick="prevCard()">← Prev</button>
-      <span class="fc-counter" id="fcCounter">1 / 16</span>
-      <button class="fc-btn" onclick="nextCard()">Next →</button>
+    <div class="flip-hint">Click card to flip</div>
+    <div class="flashcard-nav">
+      <button onclick="prevCard()">← Prev</button>
+      <span id="fcCounter">1 / 12</span>
+      <button onclick="nextCard()">Next →</button>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- QUIZ TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section" id="sec-quiz">
-  <h2>Practice Quiz</h2>
-  <p class="section-sub">Test yourself on multipliers and SRAS. 12 questions.</p>
-
-  <div class="score-bar">
-    <div>
-      <div class="score-label">Score</div>
-      <div class="score-num"><span id="quizScore">0</span> / <span id="quizTotal">12</span></div>
-    </div>
-    <button class="btn-reset" onclick="resetQuiz()">Reset Quiz</button>
-  </div>
-
-  <div id="quizContainer"></div>
-</div>
-
-<!-- ═══════════════════════════════════════ -->
-<!-- CHEAT SHEET TAB -->
-<!-- ═══════════════════════════════════════ -->
-<div class="section" id="sec-cheat">
-  <h2>Cheat Sheet</h2>
-  <p class="section-sub">Everything you need on one page</p>
-
-  <div class="card card-dark">
-    <h3>Multiplier Formulas</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
-      <div>
-        <div style="font-size:0.8rem;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px">Spending Multiplier</div>
-        <div style="font-family:var(--font-mono);font-size:1.3rem;color:var(--teal-glow);font-weight:700;margin-top:0.3rem">1 / MPS</div>
-      </div>
-      <div>
-        <div style="font-size:0.8rem;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px">Tax Multiplier</div>
-        <div style="font-family:var(--font-mono);font-size:1.3rem;color:var(--gold-light);font-weight:700;margin-top:0.3rem">−MPC / MPS</div>
-      </div>
-      <div>
-        <div style="font-size:0.8rem;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px">Balanced Budget Mult.</div>
-        <div style="font-family:var(--font-mono);font-size:1.3rem;color:var(--white);font-weight:700;margin-top:0.3rem">Always = 1</div>
-      </div>
-      <div>
-        <div style="font-size:0.8rem;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px">Key Identity</div>
-        <div style="font-family:var(--font-mono);font-size:1.3rem;color:var(--white);font-weight:700;margin-top:0.3rem">MPC + MPS = 1</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>Quick Reference: MPC → Multipliers</h3>
-    <table class="cs-table">
-      <thead><tr><th>MPC</th><th>MPS</th><th>Spending Mult.</th><th>Tax Mult.</th></tr></thead>
-      <tbody>
-        <tr><td>0.50</td><td>0.50</td><td>2</td><td>−1</td></tr>
-        <tr><td>0.60</td><td>0.40</td><td>2.5</td><td>−1.5</td></tr>
-        <tr><td>0.75</td><td>0.25</td><td>4</td><td>−3</td></tr>
-        <tr><td>0.80</td><td>0.20</td><td>5</td><td>−4</td></tr>
-        <tr><td>0.90</td><td>0.10</td><td>10</td><td>−9</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>SRAS Shift Cheat Sheet</h3>
-    <table class="cs-table">
-      <thead><tr><th>Factor</th><th>Change</th><th>Effect on Costs</th><th>SRAS Shift</th></tr></thead>
-      <tbody>
-        <tr><td>Wages</td><td>↑ Increase</td><td>Higher</td><td class="shift-left">← LEFT</td></tr>
-        <tr><td>Wages</td><td>↓ Decrease</td><td>Lower</td><td class="shift-right">RIGHT →</td></tr>
-        <tr><td>Raw Materials</td><td>↑ Increase</td><td>Higher</td><td class="shift-left">← LEFT</td></tr>
-        <tr><td>Productivity</td><td>↑ Increase</td><td>Lower</td><td class="shift-right">RIGHT →</td></tr>
-        <tr><td>Business Taxes</td><td>↑ Increase</td><td>Higher</td><td class="shift-left">← LEFT</td></tr>
-        <tr><td>Subsidies</td><td>↑ Increase</td><td>Lower</td><td class="shift-right">RIGHT →</td></tr>
-        <tr><td>Regulation</td><td>↑ Increase</td><td>Higher</td><td class="shift-left">← LEFT</td></tr>
-        <tr><td>Strong Dollar</td><td>$ Appreciates</td><td>Lower imports</td><td class="shift-right">RIGHT →</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>7 Key Takeaways</h3>
-    <ol style="margin-left:1.2rem;line-height:2.2;font-size:0.95rem">
-      <li><strong>MPC + MPS = 1.</strong> You either spend or save every dollar.</li>
-      <li><strong>Spending Multiplier = 1/MPS.</strong> Tax Multiplier = −MPC/MPS.</li>
-      <li><strong>Spending mult. &gt; Tax mult.</strong> (always by exactly 1).</li>
-      <li><strong>Balanced Budget Multiplier = 1.</strong> Always.</li>
-      <li><strong>SRAS slopes up</strong> because input costs are sticky in the short run.</li>
-      <li><strong>SRAS shifts</strong> when per-unit production costs change.</li>
-      <li><strong>3 SRAS shifters:</strong> Input prices, Productivity, Legal environment.</li>
-    </ol>
-  </div>
-</div>
+<!-- ═══ QUIZ ═══ -->
+<section class="section" id="quiz">
+  <div class="section-label">Test Yourself</div>
+  <h2>Unit Review Quiz</h2>
+  <p>10 questions covering both Multipliers and SRAS. No peeking at your notes!</p>
+  <div id="quizContainer" class="fade-in"></div>
+  <div id="quizScore" style="display:none"></div>
+</section>
 
 <footer>
-  <strong>AP Macroeconomics</strong> &mdash; Units 3.2 & 3.3 &mdash; Mr. Mayer<br>
-  <span style="font-size:0.8rem;margin-top:0.3rem;display:inline-block">Interactive Study Guide &bull; Built for DRS High School for Boys</span>
+  <p>Mr. Mayer's AP Macroeconomics | Units 3.2 & 3.3</p>
 </footer>
 
 <script>
-// ═══════════════════════════════════════
-// TAB NAVIGATION
-// ═══════════════════════════════════════
-const tabs = document.querySelectorAll('.nav-tab');
-const sections = document.querySelectorAll('.section');
-const tabMap = { learn:'sec-learn', calc:'sec-calc', graphs:'sec-graphs', flash:'sec-flash', quiz:'sec-quiz', cheat:'sec-cheat' };
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    sections.forEach(s => s.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById(tabMap[tab.dataset.tab]).classList.add('active');
-    if (tab.dataset.tab === 'graphs') setTimeout(drawAllGraphs, 50);
+// ══════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const tab=btn.dataset.tab;
+    btn.closest('.calc-wrap').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.closest('.calc-wrap').querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tab).classList.add('active');
   });
 });
 
-// ═══════════════════════════════════════
+// ══════════════════════════════════════════
 // CALCULATOR
-// ═══════════════════════════════════════
-const mpcSlider = document.getElementById('mpcSlider');
-const mpcValEl = document.getElementById('mpcVal');
-const mpsValEl = document.getElementById('mpsVal');
-const calcType = document.getElementById('calcType');
-const calcAmt = document.getElementById('calcAmt');
+// ══════════════════════════════════════════
+function calcSpending(){
+  const mpc=parseFloat(document.getElementById('s-mpc').value);
+  const spend=parseFloat(document.getElementById('s-spending').value);
+  const comp=document.getElementById('s-component').value;
+  if(isNaN(mpc)||isNaN(spend)||mpc<=0||mpc>=1)return alert('Enter valid MPC (between 0 and 1) and spending amount.');
+  const mps=+(1-mpc).toFixed(4);
+  const mult=+(1/mps).toFixed(2);
+  const deltaAD=+(spend*mult).toFixed(2);
+  const r=document.getElementById('s-result');
+  r.innerHTML=`<h4>Step-by-Step Solution</h4>
+    <div class="result-step"><span class="label">MPC</span><br><span class="value">${mpc}</span></div>
+    <div class="result-step"><span class="label">MPS = 1 − MPC</span><br><span class="value">1 − ${mpc} = ${mps}</span></div>
+    <div class="result-step"><span class="label">Spending Multiplier = 1 / MPS</span><br><span class="value">1 / ${mps} = ${mult}</span></div>
+    <div class="result-step"><span class="label">Δ${comp.split('(')[1]?.replace(')','') || 'Spending'} × Multiplier</span><br><span class="value">$${spend}B × ${mult} = $${deltaAD}B</span></div>
+    <div class="result-final"><div class="big">${spend>0?'+':''}$${deltaAD}B ΔAD</div><div class="sub">Change in Aggregate Demand</div></div>`;
+  r.classList.add('show');
+}
 
-function updateCalc() {
-  const mpc = parseFloat(mpcSlider.value);
-  const mps = +(1 - mpc).toFixed(2);
-  mpcValEl.textContent = mpc.toFixed(2);
-  mpsValEl.textContent = mps.toFixed(2);
-  const amt = parseFloat(calcAmt.value) || 0;
-  const type = calcType.value;
-  let mult, deltaAD, steps;
+function calcTax(){
+  const mpc=parseFloat(document.getElementById('t-mpc').value);
+  const tax=parseFloat(document.getElementById('t-tax').value);
+  const dir=document.getElementById('t-dir').value;
+  if(isNaN(mpc)||isNaN(tax)||mpc<=0||mpc>=1)return alert('Enter valid MPC and tax amount.');
+  const mps=+(1-mpc).toFixed(4);
+  const taxMult=dir==='increase'?+(-mpc/mps).toFixed(2):+(mpc/mps).toFixed(2);
+  const deltaAD=+(tax*taxMult).toFixed(2);
+  const r=document.getElementById('t-result');
+  r.innerHTML=`<h4>Step-by-Step Solution</h4>
+    <div class="result-step"><span class="label">MPC</span><br><span class="value">${mpc}</span></div>
+    <div class="result-step"><span class="label">MPS = 1 − MPC</span><br><span class="value">${mps}</span></div>
+    <div class="result-step"><span class="label">Tax Multiplier = ${dir==='increase'?'-':''}MPC / MPS</span><br><span class="value">${dir==='increase'?'-':''}${mpc} / ${mps} = ${taxMult}</span></div>
+    <div class="result-step"><span class="label">ΔT × Tax Multiplier</span><br><span class="value">$${tax}B × ${taxMult} = $${deltaAD}B</span></div>
+    <div class="result-final"><div class="big">${deltaAD>0?'+':''}$${deltaAD}B ΔAD</div><div class="sub">Change in Aggregate Demand</div></div>`;
+  r.classList.add('show');
+}
 
-  if (type === 'spending') {
-    mult = +(1 / mps).toFixed(2);
-    deltaAD = +(amt * mult).toFixed(1);
-    steps = `Spending Mult. = 1/MPS = 1/${mps} = ${mult}\nΔAD = $${amt}B × ${mult} = +$${deltaAD}B`;
-  } else if (type === 'tax-up') {
-    mult = +(-mpc / mps).toFixed(2);
-    deltaAD = +(amt * mult).toFixed(1);
-    steps = `Tax Mult. = −MPC/MPS = −${mpc}/${mps} = ${mult}\nΔAD = $${amt}B × (${mult}) = $${deltaAD}B`;
-  } else if (type === 'tax-down') {
-    mult = +(mpc / mps).toFixed(2);
-    deltaAD = +(amt * mult).toFixed(1);
-    steps = `Tax Cut Mult. = +MPC/MPS = ${mpc}/${mps} = +${mult}\nΔAD = $${amt}B × ${mult} = +$${deltaAD}B`;
-  } else {
-    mult = 1;
-    deltaAD = amt;
-    steps = `Balanced Budget Mult. always = 1\nΔAD = $${amt}B × 1 = +$${deltaAD}B`;
+function calcBalanced(){
+  const amt=parseFloat(document.getElementById('b-amount').value);
+  if(isNaN(amt))return alert('Enter a valid amount.');
+  const r=document.getElementById('b-result');
+  r.innerHTML=`<h4>Step-by-Step Solution</h4>
+    <div class="result-step"><span class="label">Balanced Budget Multiplier</span><br><span class="value">Always = 1</span></div>
+    <div class="result-step"><span class="label">ΔG = ΔT = $${amt}B</span><br><span class="value">ΔAD = $${amt}B × 1</span></div>
+    <div class="result-final"><div class="big">+$${amt}B ΔAD</div><div class="sub">Regardless of MPC! The balanced budget multiplier is always 1.</div></div>`;
+  r.classList.add('show');
+}
+
+// ══════════════════════════════════════════
+// RIPPLE EFFECT
+// ══════════════════════════════════════════
+function updateRipple(){
+  const mpc=document.getElementById('mpcSlider').value/100;
+  document.getElementById('mpcDisplay').textContent=mpc.toFixed(2);
+  const mps=1-mpc;
+  const mult=(1/mps);
+  document.getElementById('multDisplay').textContent=mult.toFixed(1);
+  const vis=document.getElementById('rippleVis');
+  vis.innerHTML='';
+  let total=0;const rounds=[];let amt=1000;
+  for(let i=0;i<7;i++){
+    rounds.push({label:i===0?'Initial':`Round ${i}`,amt:amt});
+    total+=amt;
+    amt=Math.round(amt*mpc);
+    if(amt<1)break;
+  }
+  const remaining=1000*mult-total;
+  if(remaining>1)total+=remaining;
+  else total=1000*mult;
+
+  const tealShades=['0D9488','14B8A6','2DD4BF','5EEAD4','99F6E4','A7F3D0','D1FAE5'];
+  rounds.forEach((r,i)=>{
+    const block=document.createElement('div');
+    block.className='ripple-block';
+    block.style.background=`#${tealShades[Math.min(i,6)]}`;
+    block.style.color=i<3?'white':'#1E293B';
+    block.innerHTML=`<div class="round">${r.label}</div><div class="amt">$${r.amt.toLocaleString()}</div>`;
+    vis.appendChild(block);
+    if(i<rounds.length-1){
+      const arrow=document.createElement('div');
+      arrow.className='ripple-arrow';
+      arrow.textContent='→';
+      vis.appendChild(arrow);
+    }
+  });
+  if(remaining>10){
+    const arrow=document.createElement('div');arrow.className='ripple-arrow';arrow.textContent='→';vis.appendChild(arrow);
+    const block=document.createElement('div');block.className='ripple-block';
+    block.style.background='#E2E8F0';block.style.color='#475569';
+    block.innerHTML=`<div class="round">Rest</div><div class="amt">$${Math.round(remaining).toLocaleString()}</div>`;
+    vis.appendChild(block);
+  }
+  document.getElementById('rippleTotal').textContent='$'+Math.round(1000*mult).toLocaleString();
+}
+updateRipple();
+
+// ══════════════════════════════════════════
+// AD-AS GRAPH
+// ══════════════════════════════════════════
+const captions={
+  'base':'Long-run equilibrium: AD meets SRAS at Yf on the LRAS.',
+  'ad-right':'AD shifts RIGHT → PL rises, Real GDP rises (inflationary gap).',
+  'ad-left':'AD shifts LEFT → PL falls, Real GDP falls (recessionary gap).',
+  'sras-right':'SRAS shifts RIGHT → PL falls, Real GDP rises (lower costs).',
+  'sras-left':'SRAS shifts LEFT → PL rises, Real GDP falls (stagflation!).'
+};
+
+function setGraph(mode,btn){
+  document.querySelectorAll('.graph-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.getElementById('graphCaption').textContent=captions[mode];
+  drawGraph(mode);
+}
+
+function drawGraph(mode){
+  const c=document.getElementById('adAsCanvas');
+  const ctx=c.getContext('2d');
+  const W=c.width,H=c.height;
+  ctx.clearRect(0,0,W,H);
+
+  const ox=80,oy=H-60,gw=W-120,gh=H-100;
+
+  // axes
+  ctx.strokeStyle='#1E293B';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(ox,30);ctx.lineTo(ox,oy);ctx.lineTo(W-30,oy);ctx.stroke();
+  ctx.fillStyle='#1E293B';ctx.font='bold 14px DM Sans';
+  ctx.fillText('PL',ox-35,45);
+  ctx.fillText('Real GDP',W-100,oy+35);
+
+  // LRAS
+  const lx=ox+gw*0.55;
+  ctx.strokeStyle='#0F2439';ctx.lineWidth=2.5;ctx.setLineDash([]);
+  ctx.beginPath();ctx.moveTo(lx,40);ctx.lineTo(lx,oy);ctx.stroke();
+  ctx.fillStyle='#0F2439';ctx.font='bold 13px DM Sans';ctx.fillText('LRAS',lx+5,50);
+  ctx.fillText('Yf',lx-8,oy+20);
+
+  // SRAS base
+  function drawLine(x1,y1,x2,y2,color,w,dash){
+    ctx.strokeStyle=color;ctx.lineWidth=w;ctx.setLineDash(dash||[]);
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.setLineDash([]);
   }
 
-  document.getElementById('calcMult').textContent = mult;
-  const sign = deltaAD >= 0 ? '+' : '';
-  document.getElementById('calcAD').textContent = `${sign}$${deltaAD}B`;
-  document.getElementById('calcAD').style.color = deltaAD >= 0 ? '#5EEAD4' : '#FCA5A5';
-  document.getElementById('calcSteps').innerHTML = steps.replace(/\n/g, '<br>');
-}
+  const srasX1=ox+30,srasY1=oy-40,srasX2=ox+gw-10,srasY2=50;
+  const adX1=ox+30,adY1=50,adX2=ox+gw-10,adY2=oy-40;
 
-mpcSlider.addEventListener('input', updateCalc);
-calcType.addEventListener('change', updateCalc);
-calcAmt.addEventListener('input', updateCalc);
-updateCalc();
+  if(mode==='base'||mode==='ad-right'||mode==='ad-left'){
+    drawLine(srasX1,srasY1,srasX2,srasY2,'#F59E0B',3);
+    ctx.fillStyle='#F59E0B';ctx.font='bold 13px DM Sans';ctx.fillText('SRAS',srasX2-10,srasY2-8);
+  }
 
-// ═══════════════════════════════════════
-// GRAPHS
-// ═══════════════════════════════════════
-function drawGraph(canvasId, drawFn) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  const w = canvas.clientWidth;
-  const h = canvas.clientHeight;
-  canvas.width = w * dpr;
-  canvas.height = h * dpr;
-  ctx.scale(dpr, dpr);
-  ctx.clearRect(0, 0, w, h);
-  drawFn(ctx, w, h);
-}
+  if(mode==='sras-right'){
+    drawLine(srasX1,srasY1,srasX2,srasY2,'#94A3B8',2,[6,4]);
+    ctx.fillStyle='#94A3B8';ctx.font='12px DM Sans';ctx.fillText('SRAS',srasX2-10,srasY2-8);
+    drawLine(srasX1+50,srasY1,srasX2+50,srasY2,'#22C55E',3);
+    ctx.fillStyle='#22C55E';ctx.font='bold 13px DM Sans';ctx.fillText('SRAS₁',srasX2+35,srasY2-8);
+  }
+  if(mode==='sras-left'){
+    drawLine(srasX1,srasY1,srasX2,srasY2,'#94A3B8',2,[6,4]);
+    ctx.fillStyle='#94A3B8';ctx.font='12px DM Sans';ctx.fillText('SRAS',srasX2-10,srasY2-8);
+    drawLine(srasX1-50,srasY1,srasX2-50,srasY2,'#EF4444',3);
+    ctx.fillStyle='#EF4444';ctx.font='bold 13px DM Sans';ctx.fillText('SRAS₁',srasX2-60,srasY2-8);
+  }
 
-function drawAxesOnCanvas(ctx, ox, oy, w, h, yLabel, xLabel) {
-  ctx.strokeStyle = '#1E293B'; ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(ox, oy - h); ctx.lineTo(ox, oy); ctx.lineTo(ox + w, oy); ctx.stroke();
-  ctx.fillStyle = '#1E293B'; ctx.font = 'bold 14px DM Sans';
-  ctx.textAlign = 'right'; ctx.fillText(yLabel, ox - 8, oy - h + 16);
-  ctx.textAlign = 'left'; ctx.fillText(xLabel, ox + w - 35, oy + 22);
-  // Arrow tips
-  ctx.beginPath(); ctx.moveTo(ox - 5, oy - h + 8); ctx.lineTo(ox, oy - h - 2); ctx.lineTo(ox + 5, oy - h + 8); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(ox + w - 8, oy - 5); ctx.lineTo(ox + w + 2, oy); ctx.lineTo(ox + w - 8, oy + 5); ctx.fill();
-}
+  if(mode==='base'||mode==='sras-right'||mode==='sras-left'){
+    drawLine(adX1,adY1,adX2,adY2,'#0D9488',3);
+    ctx.fillStyle='#0D9488';ctx.font='bold 13px DM Sans';ctx.fillText('AD',adX2-5,adY2+15);
+  }
 
-function drawLRAS(ctx, w, h) {
-  const ox = 65, oy = h - 45, gw = w - 110, gh = h - 90;
-  drawAxesOnCanvas(ctx, ox, oy, gw, gh, 'PL', 'GDP_R');
-  const xf = ox + gw * 0.55;
-  ctx.strokeStyle = '#0D9488'; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.moveTo(xf, oy - gh); ctx.lineTo(xf, oy); ctx.stroke();
-  ctx.fillStyle = '#0D9488'; ctx.font = 'bold 15px DM Sans'; ctx.textAlign = 'left';
-  ctx.fillText('LRAS', xf + 8, oy - gh + 20);
-  ctx.fillStyle = '#0D9488'; ctx.font = 'bold 13px DM Sans'; ctx.textAlign = 'center';
-  ctx.fillText('Yf', xf, oy + 20);
-}
+  if(mode==='ad-right'){
+    drawLine(adX1,adY1,adX2,adY2,'#94A3B8',2,[6,4]);
+    ctx.fillStyle='#94A3B8';ctx.font='12px DM Sans';ctx.fillText('AD',adX2-5,adY2+15);
+    drawLine(adX1+60,adY1,adX2+60,adY2,'#22C55E',3);
+    ctx.fillStyle='#22C55E';ctx.font='bold 13px DM Sans';ctx.fillText('AD₁',adX2+55,adY2+15);
+  }
+  if(mode==='ad-left'){
+    drawLine(adX1,adY1,adX2,adY2,'#94A3B8',2,[6,4]);
+    ctx.fillStyle='#94A3B8';ctx.font='12px DM Sans';ctx.fillText('AD',adX2-5,adY2+15);
+    drawLine(adX1-60,adY1,adX2-60,adY2,'#EF4444',3);
+    ctx.fillStyle='#EF4444';ctx.font='bold 13px DM Sans';ctx.fillText('AD₁',adX2-65,adY2+15);
+  }
 
-function drawSRAS(ctx, w, h) {
-  const ox = 65, oy = h - 45, gw = w - 110, gh = h - 90;
-  drawAxesOnCanvas(ctx, ox, oy, gw, gh, 'PL', 'GDP_R');
-  ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.moveTo(ox + 15, oy - 15); ctx.lineTo(ox + gw - 15, oy - gh + 15); ctx.stroke();
-  ctx.fillStyle = '#F59E0B'; ctx.font = 'bold 15px DM Sans'; ctx.textAlign = 'left';
-  ctx.fillText('SRAS', ox + gw - 10, oy - gh + 12);
-}
-
-function drawSRASShiftGraph(ctx, w, h) {
-  const shiftVal = parseInt(document.getElementById('srasShift').value);
-  const ox = 65, oy = h - 45, gw = w - 110, gh = h - 90;
-  drawAxesOnCanvas(ctx, ox, oy, gw, gh, 'PL', 'GDP_R');
-  // Original (dashed)
-  ctx.strokeStyle = '#CBD5E1'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
-  ctx.beginPath(); ctx.moveTo(ox + 15, oy - 15); ctx.lineTo(ox + gw - 15, oy - gh + 15); ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillStyle = '#94A3B8'; ctx.font = '12px DM Sans'; ctx.textAlign = 'left';
-  ctx.fillText('SRAS', ox + gw - 8, oy - gh + 10);
-  // Shifted
-  const shiftPx = shiftVal * 30;
-  const color = shiftVal > 0 ? '#22C55E' : shiftVal < 0 ? '#EF4444' : '#F59E0B';
-  ctx.strokeStyle = color; ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.moveTo(ox + 15 + shiftPx, oy - 15);
-  ctx.lineTo(ox + gw - 15 + shiftPx, oy - gh + 15);
-  ctx.stroke();
-  ctx.fillStyle = color; ctx.font = 'bold 14px DM Sans';
-  ctx.fillText('SRAS₁', ox + gw - 5 + shiftPx, oy - gh + 10);
-
-  const captionEl = document.getElementById('shiftCaption');
-  if (shiftVal > 0) captionEl.textContent = 'SRAS shifts RIGHT → (lower per-unit costs: e.g., productivity increase, subsidies, lower input prices)';
-  else if (shiftVal < 0) captionEl.textContent = '← SRAS shifts LEFT (higher per-unit costs: e.g., wage increase, higher oil prices, new regulations)';
-  else captionEl.textContent = 'SRAS at equilibrium. Drag the slider to shift.';
-}
-
-function drawADAS(ctx, w, h) {
-  const ox = 65, oy = h - 50, gw = w - 120, gh = h - 100;
-  drawAxesOnCanvas(ctx, ox, oy, gw, gh, 'PL', 'GDP_R');
-  const xf = ox + gw * 0.55;
-  // LRAS
-  ctx.strokeStyle = '#0F2439'; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(xf, oy - gh); ctx.lineTo(xf, oy); ctx.stroke();
-  ctx.fillStyle = '#0F2439'; ctx.font = 'bold 13px DM Sans'; ctx.textAlign = 'left';
-  ctx.fillText('LRAS', xf + 6, oy - gh + 18);
-  // SRAS
-  ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(ox + 10, oy - 10); ctx.lineTo(ox + gw - 10, oy - gh + 10); ctx.stroke();
-  ctx.fillStyle = '#F59E0B'; ctx.font = 'bold 13px DM Sans';
-  ctx.fillText('SRAS', ox + gw - 5, oy - gh + 8);
-  // AD
-  ctx.strokeStyle = '#0D9488'; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(ox + 10, oy - gh + 10); ctx.lineTo(ox + gw - 10, oy - 10); ctx.stroke();
-  ctx.fillStyle = '#0D9488'; ctx.font = 'bold 13px DM Sans';
-  ctx.fillText('AD', ox + gw - 5, oy - 5);
   // Equilibrium dot
-  const ex = xf, ey = oy - gh / 2;
-  ctx.fillStyle = '#EF4444';
-  ctx.beginPath(); ctx.arc(ex, ey, 5, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = '#0F2439'; ctx.font = 'bold 12px DM Sans'; ctx.textAlign = 'center';
-  ctx.fillText('Yf', xf, oy + 18);
-  ctx.fillText('E', ex + 12, ey - 8);
+  ctx.fillStyle='#EF4444';ctx.beginPath();ctx.arc(lx,oy-gh*0.5,6,0,Math.PI*2);ctx.fill();
 }
+drawGraph('base');
 
-function drawAllGraphs() {
-  drawGraph('graphLRAS', drawLRAS);
-  drawGraph('graphSRAS', drawSRAS);
-  drawGraph('graphSRASShift', drawSRASShiftGraph);
-  drawGraph('graphADAS', drawADAS);
-}
-
-document.getElementById('srasShift').addEventListener('input', () => {
-  drawGraph('graphSRASShift', drawSRASShiftGraph);
-});
-
-// ═══════════════════════════════════════
-// FLASHCARDS
-// ═══════════════════════════════════════
-const flashcards = [
-  { term: 'Disposable Income', def: 'After-tax income. The money you actually keep. You can only spend it or save it.', formula: '' },
-  { term: 'MPC', def: 'Marginal Propensity to Consume: the fraction of each extra dollar that is SPENT.', formula: 'MPC = ΔC / ΔDI' },
-  { term: 'MPS', def: 'Marginal Propensity to Save: the fraction of each extra dollar that is SAVED.', formula: 'MPS = ΔS / ΔDI' },
-  { term: 'MPC + MPS = 1', def: 'You either spend or save every extra dollar. There is no third option.', formula: 'MPC = 1 − MPS' },
-  { term: 'Spending Multiplier', def: 'Shows how much total AD changes from an initial change in C, I, G, or Xn.', formula: '1 / MPS  or  1 / (1 − MPC)' },
-  { term: 'Tax Multiplier', def: 'Shows how much AD changes from a change in taxes. Always smaller than spending multiplier by 1.', formula: '−MPC / MPS' },
-  { term: 'Balanced Budget Multiplier', def: 'When ΔG = ΔT, the multiplier always equals 1. The change in AD equals the change in G.', formula: 'BBM = 1 (always)' },
-  { term: 'Why is Tax Mult. smaller?', def: 'When gov\'t cuts taxes, people save part of it first. With direct spending, 100% enters the economy.', formula: '' },
-  { term: 'Aggregate Supply', def: 'The total level of Real GDP that all firms will produce at each price level.', formula: '' },
-  { term: 'LRAS', def: 'Long-Run Aggregate Supply. Vertical at Yf because input prices fully adjust. Like the PPC.', formula: '' },
-  { term: 'SRAS', def: 'Short-Run Aggregate Supply. Upward sloping because input prices are sticky.', formula: '' },
-  { term: 'Sticky Prices', def: 'Prices that don\'t adjust quickly: wages (contracts), rent (leases), material costs (orders).', formula: '' },
-  { term: 'Per-Unit Production Cost', def: 'The key to SRAS shifts. If per-unit costs change, SRAS shifts.', formula: 'Total Input Cost / Total Output' },
-  { term: 'Input Prices', def: 'SRAS Shifter #1: Wages (75% of costs!), raw materials, energy, foreign resources.', formula: '↑ Input Prices → SRAS LEFT' },
-  { term: 'Productivity', def: 'SRAS Shifter #2: Output per unit of input. More productivity = lower costs = SRAS right.', formula: 'Total Output / Total Inputs' },
-  { term: 'Legal-Institutional', def: 'SRAS Shifter #3: Business taxes ↑ costs. Subsidies ↓ costs. Regulation ↑ compliance costs.', formula: '' },
+// ══════════════════════════════════════════
+// SRAS SHIFT GAME
+// ══════════════════════════════════════════
+const srasScenarios=[
+  {event:'Oil prices spike due to conflict in the Middle East',shift:'← LEFT',color:'var(--red)',reason:'Higher input prices'},
+  {event:'Government gives subsidies to solar manufacturers',shift:'RIGHT →',color:'var(--green)',reason:'Lower per-unit costs'},
+  {event:'New AI tools double worker productivity',shift:'RIGHT →',color:'var(--green)',reason:'More output per input'},
+  {event:'Congress raises the minimum wage to $20/hr',shift:'← LEFT',color:'var(--red)',reason:'Higher wage costs'},
+  {event:'The dollar strengthens against the euro',shift:'RIGHT →',color:'var(--green)',reason:'Cheaper foreign resources'},
+  {event:'New EPA regulations require expensive filters',shift:'← LEFT',color:'var(--red)',reason:'Higher compliance costs'},
+  {event:'A hurricane destroys factories along the Gulf Coast',shift:'← LEFT',color:'var(--red)',reason:'Reduced productivity/capacity'},
+  {event:'Government removes tariffs on imported steel',shift:'RIGHT →',color:'var(--green)',reason:'Lower input costs'},
+  {event:'OPEC agrees to increase oil production',shift:'RIGHT →',color:'var(--green)',reason:'Lower energy/input costs'},
+  {event:'New business taxes are passed to fund infrastructure',shift:'← LEFT',color:'var(--red)',reason:'Higher per-unit costs'},
 ];
 
-let fcIndex = 0;
-function showCard() {
-  const fc = flashcards[fcIndex];
-  document.getElementById('fcTerm').textContent = fc.term;
-  document.getElementById('fcDef').textContent = fc.def;
-  document.getElementById('fcFormula').textContent = fc.formula;
-  document.getElementById('fcCounter').textContent = `${fcIndex + 1} / ${flashcards.length}`;
+let srasCorrect=0,srasTotal=0;
+function buildSrasGame(){
+  const cont=document.getElementById('srasGameContainer');
+  cont.innerHTML='';
+  srasScenarios.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='sras-scenario';
+    div.innerHTML=`<div><span class="event">${s.event}</span><br><span style="font-size:0.8rem;color:var(--gray-400)">${s.reason}</span></div><span class="shift" style="color:${s.color}">${s.shift}</span>`;
+    div.addEventListener('click',()=>{
+      if(!div.classList.contains('answered')){
+        div.classList.add('answered');
+        srasTotal++;
+        document.getElementById('srasScore').textContent=`${srasTotal} of ${srasScenarios.length} revealed`;
+      }
+    });
+    cont.appendChild(div);
+  });
+}
+buildSrasGame();
+
+// ══════════════════════════════════════════
+// FLASHCARDS
+// ══════════════════════════════════════════
+const flashcards=[
+  {front:'What is MPC?',sub:'Marginal Propensity to Consume',back:'The fraction of every extra dollar of disposable income that is SPENT.',formula:'MPC = ΔC / ΔDI'},
+  {front:'What is MPS?',sub:'Marginal Propensity to Save',back:'The fraction of every extra dollar of disposable income that is SAVED.',formula:'MPS = ΔS / ΔDI'},
+  {front:'MPC + MPS = ?',sub:'The Golden Rule',back:'MPC + MPS always equals 1. You either spend it or save it.',formula:'MPC + MPS = 1'},
+  {front:'Spending Multiplier',sub:'Formula',back:'Tells you how much AD changes from an initial change in C, I, G, or Xn.',formula:'1 / MPS  or  1 / (1-MPC)'},
+  {front:'Tax Multiplier',sub:'Formula',back:'Always smaller than spending multiplier by 1. Negative for tax increases.',formula:'-MPC / MPS'},
+  {front:'Balanced Budget Multiplier',sub:'When ΔG = ΔT',back:'When gov spending and taxes increase by equal amounts, ΔAD equals the change in G.',formula:'BBM = 1 (always)'},
+  {front:'Why is SRAS upward sloping?',sub:'Short-Run Aggregate Supply',back:'Input prices are STICKY in the short run. When PL rises, firms sell at higher prices but costs stay fixed, so profits rise and they produce more.',formula:''},
+  {front:'Why is LRAS vertical?',sub:'Long-Run Aggregate Supply',back:'In the long run, ALL prices adjust (including wages). Real profits don\'t change, so output stays at full employment regardless of PL.',formula:'Output = Yf'},
+  {front:'What shifts SRAS?',sub:'3 Determinants',back:'Anything that changes per-unit production cost: (1) Input prices, (2) Productivity, (3) Legal-institutional environment.',formula:'Per-unit cost = Total input cost / Total output'},
+  {front:'Wages rise → SRAS?',sub:'Input Prices',back:'Wages are 75% of business costs. Higher wages = higher per-unit costs = SRAS shifts LEFT.',formula:'SRAS ← LEFT'},
+  {front:'New technology → SRAS?',sub:'Productivity',back:'Better tech = more output per input = lower per-unit cost = SRAS shifts RIGHT.',formula:'SRAS → RIGHT'},
+  {front:'What is stagflation?',sub:'SRAS shifts left',back:'When SRAS decreases: prices RISE and output FALLS simultaneously. The worst of both worlds.',formula:'PL ↑ + GDP ↓'},
+];
+
+let fcIndex=0;
+function showCard(){
+  const fc=flashcards[fcIndex];
+  document.getElementById('fc-front-title').textContent=fc.front;
+  document.getElementById('fc-front-sub').textContent=fc.sub;
+  document.getElementById('fc-back-text').textContent=fc.back;
+  document.getElementById('fc-back-formula').textContent=fc.formula;
+  document.getElementById('fcCounter').textContent=`${fcIndex+1} / ${flashcards.length}`;
   document.getElementById('flashcard').classList.remove('flipped');
 }
-function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
-function nextCard() { fcIndex = (fcIndex + 1) % flashcards.length; showCard(); }
-function prevCard() { fcIndex = (fcIndex - 1 + flashcards.length) % flashcards.length; showCard(); }
+function flipCard(){document.getElementById('flashcard').classList.toggle('flipped')}
+function nextCard(){fcIndex=(fcIndex+1)%flashcards.length;showCard()}
+function prevCard(){fcIndex=(fcIndex-1+flashcards.length)%flashcards.length;showCard()}
 showCard();
 
-// ═══════════════════════════════════════
+// ══════════════════════════════════════════
 // QUIZ
-// ═══════════════════════════════════════
-const quizData = [
-  { q: 'If MPC = 0.75, what is the MPS?', opts: ['0.75', '0.25', '0.50', '1.33'], correct: 1, explain: 'MPC + MPS = 1, so MPS = 1 − 0.75 = 0.25.' },
-  { q: 'If MPC = 0.80, what is the spending multiplier?', opts: ['4', '5', '8', '0.80'], correct: 1, explain: 'Spending Multiplier = 1/MPS = 1/0.20 = 5.' },
-  { q: 'People spend $0.90 of every extra dollar. Investment increases $50B. What is ΔAD?', opts: ['+$500B', '+$450B', '+$50B', '+$100B'], correct: 0, explain: 'MPS = 0.10, Mult = 1/0.10 = 10. $50B × 10 = $500B.' },
-  { q: 'If MPC = 0.80, what is the tax multiplier?', opts: ['-5', '-4', '4', '-0.80'], correct: 1, explain: 'Tax Mult. = −MPC/MPS = −0.80/0.20 = −4.' },
-  { q: 'The spending multiplier is always ___ than the tax multiplier.', opts: ['Smaller', 'The same', 'Exactly 1 larger', 'Exactly 2 larger'], correct: 2, explain: 'Spending mult. = 1/MPS, Tax mult. = −MPC/MPS. The difference is always 1.' },
-  { q: 'G increases $200B and T increases $200B. MPC = 0.90. What is ΔAD?', opts: ['+$200B', '+$2,000B', '+$1,800B', '$0'], correct: 0, explain: 'Balanced Budget Multiplier always = 1. ΔAD = $200B × 1 = $200B.' },
-  { q: 'Why does SRAS slope upward?', opts: ['Input prices are flexible', 'Input prices are sticky', 'The government sets prices', 'Firms always want to produce more'], correct: 1, explain: 'In the short run, input prices (wages, rent) are sticky. When PL rises, costs stay the same so profits rise and firms produce more.' },
-  { q: 'What does LRAS represent?', opts: ['Total spending', 'Full employment output', 'Government budget', 'Price level'], correct: 1, explain: 'LRAS is vertical at full employment (Yf) — the economy\'s maximum sustainable output, like the PPC.' },
-  { q: 'Oil prices spike globally. What happens to SRAS?', opts: ['Shifts RIGHT', 'Shifts LEFT', 'No change', 'Becomes vertical'], correct: 1, explain: 'Higher oil prices = higher input costs = higher per-unit production cost = SRAS shifts LEFT.' },
-  { q: 'New AI technology doubles worker productivity. SRAS...', opts: ['Shifts LEFT', 'Shifts RIGHT', 'Doesn\'t change', 'Becomes flat'], correct: 1, explain: 'More productivity = more output per input = lower per-unit cost = SRAS shifts RIGHT.' },
-  { q: 'The government increases business taxes. SRAS...', opts: ['Shifts RIGHT', 'No change', 'Shifts LEFT', 'Becomes vertical'], correct: 2, explain: 'Higher business taxes increase per-unit production costs, shifting SRAS LEFT.' },
-  { q: 'DI rises from $50K to $55K. Consumption rises from $40K to $42K. What is MPC?', opts: ['0.80', '0.40', '0.60', '0.20'], correct: 1, explain: 'MPC = ΔC/ΔDI = $2,000/$5,000 = 0.40.' },
+// ══════════════════════════════════════════
+const quizData=[
+  {q:'If MPC = 0.75, what is the spending multiplier?',opts:['3','4','5','0.75'],correct:1,exp:'MPS = 1 - 0.75 = 0.25. Multiplier = 1/0.25 = 4.'},
+  {q:'If MPS = 0.10, and government spending increases by $50B, what is the change in AD?',opts:['$50B','$100B','$500B','$5B'],correct:2,exp:'Multiplier = 1/0.10 = 10. ΔAD = $50B × 10 = $500B.'},
+  {q:'The tax multiplier is always _____ than the spending multiplier.',opts:['Larger','Smaller by exactly 1','Equal','Smaller by exactly MPC'],correct:1,exp:'The tax multiplier is always exactly 1 less because people save part of the tax change first.'},
+  {q:'If ΔG = $200B and ΔT = $200B, what is ΔAD?',opts:['$0','$200B','$400B','Depends on MPC'],correct:1,exp:'Balanced Budget Multiplier = 1. ΔAD = $200B × 1 = $200B.'},
+  {q:'MPC = 0.80. If taxes increase by $100B, ΔAD = ?',opts:['-$500B','-$400B','-$100B','+$400B'],correct:1,exp:'Tax mult = -MPC/MPS = -0.80/0.20 = -4. ΔAD = $100B × (-4) = -$400B.'},
+  {q:'SRAS slopes upward because:',opts:['Input prices are flexible','Input prices are sticky in the short run','The economy is at full employment','The government controls prices'],correct:1,exp:'Sticky input prices mean firms earn higher profits when PL rises (costs lag behind revenue).'},
+  {q:'Which would shift SRAS to the LEFT?',opts:['New productivity-boosting technology','A decrease in oil prices','An increase in the minimum wage','Government deregulation'],correct:2,exp:'Higher minimum wage → higher labor costs → higher per-unit production cost → SRAS shifts left.'},
+  {q:'A stronger U.S. dollar causes SRAS to:',opts:['Shift left','Shift right','Not change','Become vertical'],correct:1,exp:'Stronger dollar = cheaper imported resources = lower input costs = SRAS shifts right.'},
+  {q:'If SRAS shifts LEFT, what happens?',opts:['PL falls, GDP rises','PL falls, GDP falls','PL rises, GDP falls (stagflation)','PL rises, GDP rises'],correct:2,exp:'SRAS left: higher costs → firms produce less and charge more. PL ↑, GDP ↓ = stagflation.'},
+  {q:'Per-unit production cost equals:',opts:['Total revenue / Total output','Total input cost / Total output','MPC / MPS','Price level × Real GDP'],correct:1,exp:'Per-unit production cost = total input cost ÷ total output. This is the key driver of SRAS shifts.'},
 ];
 
-let quizScore = 0;
-let answered = new Set();
-
-function buildQuiz() {
-  const container = document.getElementById('quizContainer');
-  container.innerHTML = '';
-  quizScore = 0; answered.clear();
-  document.getElementById('quizScore').textContent = '0';
-
-  quizData.forEach((q, qi) => {
-    let html = `<div class="quiz-card" id="qcard-${qi}">
-      <div class="q-num">Question ${qi + 1}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="quiz-options" id="qopts-${qi}">`;
-    q.opts.forEach((opt, oi) => {
-      html += `<button class="quiz-opt" data-q="${qi}" data-o="${oi}" onclick="answerQuiz(${qi},${oi})">${opt}</button>`;
-    });
-    html += `</div><div class="quiz-explain" id="qexp-${qi}">${q.explain}</div></div>`;
-    container.innerHTML += html;
+let quizScore=0,quizAnswered=0;
+function buildQuiz(){
+  const cont=document.getElementById('quizContainer');
+  cont.innerHTML='';
+  quizData.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='quiz-q';
+    let optsHtml=q.opts.map((o,j)=>`<div class="quiz-opt" data-q="${i}" data-o="${j}" onclick="checkAnswer(${i},${j},this)">${String.fromCharCode(65+j)}. ${o}</div>`).join('');
+    div.innerHTML=`<h4>${i+1}. ${q.q}</h4><div class="quiz-options">${optsHtml}</div><div class="quiz-explanation" id="exp-${i}"></div>`;
+    cont.appendChild(div);
   });
 }
-
-function answerQuiz(qi, oi) {
-  if (answered.has(qi)) return;
-  answered.add(qi);
-  const btns = document.querySelectorAll(`#qopts-${qi} .quiz-opt`);
-  btns.forEach(b => {
-    b.classList.add('disabled');
-    const o = parseInt(b.dataset.o);
-    if (o === quizData[qi].correct) b.classList.add('correct');
-    else if (o === oi) b.classList.add('wrong');
-  });
-  if (oi === quizData[qi].correct) {
+function checkAnswer(qi,oi,el){
+  const opts=document.querySelectorAll(`.quiz-opt[data-q="${qi}"]`);
+  if(opts[0].classList.contains('locked'))return;
+  opts.forEach(o=>o.classList.add('locked'));
+  const q=quizData[qi];
+  if(oi===q.correct){
+    el.classList.add('correct');
     quizScore++;
-    document.getElementById('quizScore').textContent = quizScore;
+  }else{
+    el.classList.add('wrong');
+    opts[q.correct].classList.add('correct');
   }
-  document.getElementById(`qexp-${qi}`).classList.add('show');
-}
+  quizAnswered++;
+  const exp=document.getElementById(`exp-${qi}`);
+  exp.className=`quiz-explanation show ${oi===q.correct?'correct-exp':'wrong-exp'}`;
+  exp.textContent=(oi===q.correct?'✓ Correct! ':'✗ Incorrect. ')+q.exp;
 
-function resetQuiz() { buildQuiz(); }
+  if(quizAnswered===quizData.length){
+    setTimeout(()=>{
+      const sc=document.getElementById('quizScore');
+      sc.style.display='block';
+      sc.innerHTML=`<div class="quiz-score"><div class="big">${quizScore} / ${quizData.length}</div><p>${quizScore>=8?'Excellent! You\'re AP exam ready!':quizScore>=6?'Good job! Review the ones you missed.':'Keep studying! Review the flashcards and try again.'}</p><button class="quiz-reset" onclick="resetQuiz()">Try Again</button></div>`;
+      sc.scrollIntoView({behavior:'smooth'});
+    },500);
+  }
+}
+function resetQuiz(){
+  quizScore=0;quizAnswered=0;
+  document.getElementById('quizScore').style.display='none';
+  buildQuiz();
+}
 buildQuiz();
 
-// Draw graphs on window load
-window.addEventListener('load', () => { setTimeout(drawAllGraphs, 100); });
-window.addEventListener('resize', drawAllGraphs);
+// Scroll to section without anchor links (avoids Claude artifact external link popup)
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el){
+    const navHeight=70;
+    const top=el.getBoundingClientRect().top+window.pageYOffset-navHeight;
+    window.scrollTo({top:top,behavior:'smooth'});
+  }
+}
+
+// ══════════════════════════════════════════
+// SCROLL ANIMATIONS
+// ══════════════════════════════════════════
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+
+  // Active nav
+  const sections=['multipliers','calculator','ripple','sras','sras-game','flashcards','quiz'];
+  let current='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<200)current=id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('data-target')===current);
+  });
+});
 </script>
 </body>
 </html>
